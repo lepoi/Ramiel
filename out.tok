@@ -1,0 +1,5 @@
+  line   column    token	content
+
+     1        4    T_FLT	1.2
+     1        5    S_PNT	.
+     1        6    T_INT	3
