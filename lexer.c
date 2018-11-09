@@ -229,7 +229,7 @@ char parse_word(struct token_info *n_info, char first, struct state *lex_state) 
 	struct token *tok = malloc(sizeof(struct token));
 	n_info->tok = tok;
 
-	while (isalpha(read) || isdigit(read)) {
+	while (isalpha(read) || isdigit(read) || read == '_') {
 		word = append(word, read);
 		read = next_char(lex_state);
 	}
