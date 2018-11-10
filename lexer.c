@@ -1,22 +1,22 @@
 #include "lexer.h"
 
-int main(int argc, char *args[]) {
+int run_lexer(char *args[]) {
 	if (!args[1]) {
 		printf("Needs more arguments!\n");
-		exit(1);
+		return 1;
 	}
 
 	struct state lex_state = new_state();
 	lex_state.input = fopen(args[1], "r");	
 	if (!lex_state.input) {
 		printf("Invalid file\n");
-		exit(1);
+		return 1;
 	}
 
 	lex_state.output = fopen("out.tok", "wb");
 	if (!lex_state.output) {
 		printf("Cannot open destination file \"out.tok\"\n");
-		exit(1);
+		return 1;
 	}
 	char current = next_char(&lex_state), error = 0;
 	struct token_info *n_info = malloc(sizeof(struct token_info));
@@ -28,18 +28,15 @@ int main(int argc, char *args[]) {
 		n_info->column = lex_state.column;
 		error = parse(n_info, current, &lex_state);
 
-		if (!error) {
-			fprintf(lex_state.output, "%6d %8d %.8s\t%s\n", lex_state.line, lex_state.column, &token_names[n_info->tok->type * 8], n_info->tok->content);
-		}
+		fprintf(lex_state.output, "%6d %8d %.8s\t%s\n", lex_state.line, lex_state.column, &token_names[n_info->tok->type * 8], n_info->tok->content);
 
 		current = next_char(&lex_state);
 	}
-	printf("End Of File reached.\n");
 
 	fclose(lex_state.input);
 	fclose(lex_state.output);
 
-	return 0;
+	return error;
 }
 
 char parse(struct token_info *n_info, char current, struct state *lex_state) {
@@ -161,21 +158,10 @@ void skip_line(struct state *lex_state) {
 	while ((r = next_char(lex_state)) != '{' && r != '\n' && r != EOF);
 }
 
-struct token *consume_token(struct state *lex_state) {
-	char *buffer;
-	struct token *new_token;
-	if (fscanf(lex_state->input, buffer) > 0) {
-		// TODO: no saber que pedo xD
-		printf("%s\n", buffer);
-	}
-
-	return new_token;
-}
-
 char parse_char(struct token_info *n_info, struct state *lex_state) {
 	char char_1 = next_char(lex_state), char_2;
 
-	if (char_2 = next_char(lex_state) != '\'') {
+	if ((char_2 = next_char(lex_state)) != '\'') {
 		error_m("Error in character literal, closing \' expected", lex_state, n_info->line, n_info->column);
 		return_char(char_2, lex_state);
 		skip_line(lex_state);
@@ -183,7 +169,8 @@ char parse_char(struct token_info *n_info, struct state *lex_state) {
 	else {
 		struct token *tok = malloc(sizeof(struct token));
 		tok->type = T_CHR;
-		tok->content = &char_1;
+		tok->content = malloc(1);
+		tok->content[0] = char_1;
 		n_info->tok = tok;
 		n_info->val_c = char_1;
 
@@ -224,7 +211,7 @@ char parse_word_or_number(struct token_info *n_info, char first, struct state *l
 }
 
 char parse_word(struct token_info *n_info, char first, struct state *lex_state) {
-	char read = first, keyword = 0;
+	char read = first;
 	char *word = "";
 	struct token *tok = malloc(sizeof(struct token));
 	n_info->tok = tok;

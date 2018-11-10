@@ -1,1 +1,6 @@
-1.2.3
+int a = 0, 'x';
+read(x);
+
+while (a < x) {
+	print(a++);
+}
