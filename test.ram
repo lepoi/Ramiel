@@ -1,4 +1,4 @@
-int a = 0, 'x';
+int a;
 read(x);
 
 while (a < x) {

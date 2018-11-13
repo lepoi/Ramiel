@@ -15,6 +15,7 @@ struct token {
 
 struct token_info {
 	struct token *tok;
+	struct token_info *next;
 	unsigned short line, column;
 	union {
 		int val_i;

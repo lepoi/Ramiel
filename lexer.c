@@ -1,47 +1,68 @@
 #include "lexer.h"
 
-int run_lexer(char *args[]) {
+char run_lexer(char *args[]) {
 	if (!args[1]) {
 		printf("Needs more arguments!\n");
 		return 1;
 	}
 
-	struct state lex_state = new_state();
 	lex_state.input = fopen(args[1], "r");	
 	if (!lex_state.input) {
 		printf("Invalid file\n");
 		return 1;
 	}
 
-	lex_state.output = fopen("out.tok", "wb");
-	if (!lex_state.output) {
-		printf("Cannot open destination file \"out.tok\"\n");
-		return 1;
-	}
-	char current = next_char(&lex_state), error = 0;
-	struct token_info *n_info = malloc(sizeof(struct token_info));
-
-	fprintf(lex_state.output, "%6s %8s %8s\t%s\n\n", "line", "column", "token", "content");
-
+	char current = next_char(), error = 0;
 	while (current != EOF) {
+		struct token_info *n_info = malloc(sizeof(struct token_info));
+		struct token *n_tok = malloc(sizeof(struct token));
+		n_info->tok = n_tok;
 		n_info->line = lex_state.line;
 		n_info->column = lex_state.column;
-		error = parse(n_info, current, &lex_state);
+		error = parse(n_info, current);
 
-		fprintf(lex_state.output, "%6d %8d %.8s\t%s\n", lex_state.line, lex_state.column, &token_names[n_info->tok->type * 8], n_info->tok->content);
-
+		append_token(n_info);
 		current = next_char(&lex_state);
 	}
 
-	fclose(lex_state.input);
-	fclose(lex_state.output);
+	// debugging
+	// struct token_info *pointer = lex_state.entry;
+	// while (pointer != NULL) {
+	// 	printf("%6d %8d %.8s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
+	// 	pointer = pointer->next;
+	// }
 
+	fclose(lex_state.input);
 	return error;
 }
 
-char parse(struct token_info *n_info, char current, struct state *lex_state) {
-	struct token *tok = malloc(sizeof(struct token));
-	n_info->tok = tok;
+char next_char() {
+	char read = (char) fgetc(lex_state.input);
+	lex_state.column++;
+	
+	if (read == EOF)
+		return EOF;
+
+	if (read == '\n') {
+		lex_state.line++;
+		lex_state.column = 0;
+	}
+
+	return read;
+}
+
+void return_char(char ret) {
+	ungetc(ret, lex_state.input);
+	lex_state.column--;
+}
+
+void skip_line() {
+	char r;
+	while ((r = next_char()) != '{' && r != '\n' && r != EOF);
+}
+
+char parse(struct token_info *n_info, char current) {
+	struct token *tok = n_info->tok;
 
 	switch (current) {
 		// whitespace
@@ -49,122 +70,118 @@ char parse(struct token_info *n_info, char current, struct state *lex_state) {
 		case '\t':
 		case '\n':
 			tok->type = T_WHSP;
+			tok->content = " ";
 			break;
 
 		// operators
 		case '*':
 			tok->type = O_MUL;
+			tok->content = "*";
 			break;
 		case '/':
 			tok->type = O_DIV;
+			tok->content = "/";
 			break;
 		case '%':
 			tok->type = O_MOD;
+			tok->content = "%";
 			break;
 		case '+':
 			tok->type = O_SUM;
+			tok->content = "+";
 			break;
 		case '-':
 			tok->type = O_SUB;
+			tok->content = "-";
 			break;
 		case '!':
 			tok->type = O_NEG;
+			tok->content = "!";
 			break;
 		case '<':
 			tok->type = O_LES;
+			tok->content = "<";
 			break;
 		case '>':
 			tok->type = O_GRE;
+			tok->content = ">";
 			break;
 		case '&':
 			tok->type = O_AND;
+
+			tok->content = "&";
 			break;
 		case '|':
 			tok->type = O_OR;
+			tok->content = "|";
 			break;
 		case '=':
 			tok->type = O_EQ;
+			tok->content = "=";
 			break;
 
 		// symbols
 		case '(':
 			tok->type = S_RPAR;
+			tok->content = "(";
 			break;
 		case ')':
 			tok->type = S_RPAR;
+			tok->content = ")";
 			break;
 		case '{':
 			tok->type = S_LCBR;
+			tok->content = "{";
 			break;
 		case '}':
 			tok->type = S_RCBR;
+			tok->content = "}";
 			break;
 		case '[':
 			tok->type = S_LSBR;
+			tok->content = "[";
 			break;
 		case ']':
 			tok->type = S_RSBR;
+			tok->content = "]";
 			break;
 		case '.':
 			tok->type = S_PNT;
+			tok->content = ".";
 			break;
 		case ',':
 			tok->type = S_CMA;
+			tok->content = ",";
 			break;
 		case ';':
 			tok->type = S_SCLN;
+			tok->content = ";";
 			break;
 
 		// char literal
 		case '\'':
-			return parse_char(n_info, lex_state);
+			return parse_char(n_info);
 		
 		// string literal
 		case '"':
-			return parse_string(n_info, lex_state);
+			return parse_string(n_info);
 		
 		// keyword, identifier or number
 		default:
-			return parse_word_or_number(n_info, current, lex_state);	
+			return parse_word_or_number(n_info, current);	
 	}
-	tok->content = &current;
 	n_info->val_c = current;
 
 	return 0;
 }
 
-char next_char(struct state *lex_state) {
-	char read = (char) fgetc(lex_state->input);
-	lex_state->column++;
-	
-	if (read == EOF)
-		return EOF;
+char parse_char(struct token_info *n_info) {
+	char char_1 = next_char(), char_2;
 
-	if (read == '\n') {
-		lex_state->line++;
-		lex_state->column = 0;
-	}
-
-	return read;
-}
-
-void return_char(char ret, struct state *lex_state) {
-	ungetc(ret, lex_state->input);
-	lex_state->column--;
-}
-
-void skip_line(struct state *lex_state) {
-	char r;
-	while ((r = next_char(lex_state)) != '{' && r != '\n' && r != EOF);
-}
-
-char parse_char(struct token_info *n_info, struct state *lex_state) {
-	char char_1 = next_char(lex_state), char_2;
-
-	if ((char_2 = next_char(lex_state)) != '\'') {
-		error_m("Error in character literal, closing \' expected", lex_state, n_info->line, n_info->column);
-		return_char(char_2, lex_state);
-		skip_line(lex_state);
+	if ((char_2 = next_char()) != '\'') {
+		error_m("Error in character literal, closing \' expected", n_info->line, n_info->column);
+		return_char(char_2);
+		skip_line();
 	}
 	else {
 		struct token *tok = malloc(sizeof(struct token));
@@ -180,16 +197,16 @@ char parse_char(struct token_info *n_info, struct state *lex_state) {
 	return 1;
 }
 
-char parse_string(struct token_info *n_info, struct state *lex_state) {
-	char read = next_char(lex_state);
+char parse_string(struct token_info *n_info) {
+	char read = next_char();
 	char *string = "";
 
 	while (read != '\"') {
 		string = append(string, read);
-		read = next_char(lex_state);
+		read = next_char();
 
 		if (read == EOF) {
-			error_m("Error in string literal, closing \" expected", lex_state, n_info->line, n_info->column);
+			error_m("Error in string literal, closing \" expected", n_info->line, n_info->column);
 			return 1;
 		}
 	}
@@ -203,14 +220,14 @@ char parse_string(struct token_info *n_info, struct state *lex_state) {
 	return 0;
 }
 
-char parse_word_or_number(struct token_info *n_info, char first, struct state *lex_state) {
+char parse_word_or_number(struct token_info *n_info, char first) {
 	if (isdigit(first))
-		return parse_number(n_info, first, lex_state);
+		return parse_number(n_info, first);
 	else
-		return parse_word(n_info, first, lex_state);
+		return parse_word(n_info, first);
 }
 
-char parse_word(struct token_info *n_info, char first, struct state *lex_state) {
+char parse_word(struct token_info *n_info, char first) {
 	char read = first;
 	char *word = "";
 	struct token *tok = malloc(sizeof(struct token));
@@ -218,7 +235,7 @@ char parse_word(struct token_info *n_info, char first, struct state *lex_state) 
 
 	while (isalpha(read) || isdigit(read) || read == '_') {
 		word = append(word, read);
-		read = next_char(lex_state);
+		read = next_char();
 	}
 
 	tok->type = T_IDEN;
@@ -249,11 +266,11 @@ char parse_word(struct token_info *n_info, char first, struct state *lex_state) 
 	tok->content = word;
 	n_info->val_s = word;
 
-	return_char(read, lex_state);
+	return_char(read);
 	return 0;
 }
 
-char parse_number(struct token_info *n_info, char first, struct state *lex_state) {
+char parse_number(struct token_info *n_info, char first) {
 	char read = first;
 	char *number = "";
 	struct token *tok = malloc(sizeof(struct token));
@@ -261,23 +278,23 @@ char parse_number(struct token_info *n_info, char first, struct state *lex_state
 
 	while (isdigit(read)) {
 		number = append(number, read);
-		read = next_char(lex_state);
+		read = next_char();
 	}
 
 	if (read == '.') {
 		number = append(number, '.');
-		read = next_char(lex_state);
+		read = next_char();
 
 		while (isdigit(read)) {
 			number = append(number, read);
-			read = next_char(lex_state);
+			read = next_char();
 		}
 
 		tok->type = T_FLT;
 		tok->content = number;
 		n_info->val_d = atof(number);
 	
-		return_char(read, lex_state);
+		return_char(read);
 		return 0;
 	}
 
@@ -285,6 +302,6 @@ char parse_number(struct token_info *n_info, char first, struct state *lex_state
 	tok->content = number;
 	n_info->val_i = atoi(number);
 
-	return_char(read, lex_state);
+	return_char(read);
 	return 0;
 }

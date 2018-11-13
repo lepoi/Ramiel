@@ -6,16 +6,16 @@
 
 #include <stdio.h>
 
-void error_m(char *message, struct state *lex_state, ushort line, ushort column) {
+void error_m(char *message, ushort line, ushort column) {
 	printf(C_R"*** ERROR ***"C_B" line %u, column %u\n"C_RST, line, column);
 	printf("%s\n\n", message);
-	lex_state->errors++;
+	lex_state.errors++;
 }
 
-void warning_m(char *message, struct state *lex_state, ushort line, ushort column) {
+void warning_m(char *message, ushort line, ushort column) {
 	printf(C_Y"* WARNING *"C_B" line %u, column %u\n"C_RST, line, column);
 	printf("%s\n\n", message);
-	lex_state->warnings++;
+	lex_state.warnings++;
 }
 
 void standard_m(char *message) {
