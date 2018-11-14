@@ -1,17 +1,6 @@
 #include "lexer.h"
 
-char run_lexer(char *args[]) {
-	if (!args[1]) {
-		printf("Needs more arguments!\n");
-		return 1;
-	}
-
-	lex_state.input = fopen(args[1], "r");	
-	if (!lex_state.input) {
-		printf("Invalid file\n");
-		return 1;
-	}
-
+char make_tokens() {
 	char current = next_char(), error = 0;
 	while (current != EOF) {
 		struct token_info *n_info = malloc(sizeof(struct token_info));
@@ -21,16 +10,18 @@ char run_lexer(char *args[]) {
 		n_info->column = lex_state.column;
 		error = parse(n_info, current);
 
-		append_token(n_info);
+		if (!error)
+			append_token(n_info);
+		
 		current = next_char(&lex_state);
 	}
 
 	// debugging
-	// struct token_info *pointer = lex_state.entry;
-	// while (pointer != NULL) {
-	// 	printf("%6d %8d %.8s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
-	// 	pointer = pointer->next;
-	// }
+	struct token_info *pointer = lex_state.list;
+	while (pointer != NULL) {
+		printf("%6d %8d %.8s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
+		pointer = pointer->next;
+	}
 
 	fclose(lex_state.input);
 	return error;
@@ -63,6 +54,7 @@ void skip_line() {
 
 char parse(struct token_info *n_info, char current) {
 	struct token *tok = n_info->tok;
+	char unary = 1;
 
 	switch (current) {
 		// whitespace
@@ -89,22 +81,27 @@ char parse(struct token_info *n_info, char current) {
 		case '+':
 			tok->type = O_SUM;
 			tok->content = "+";
+			unary = 0;
 			break;
 		case '-':
 			tok->type = O_SUB;
 			tok->content = "-";
+			unary = 0;
 			break;
 		case '!':
-			tok->type = O_NEG;
+			tok->type = O_NOT;
 			tok->content = "!";
+			unary = 0;
 			break;
 		case '<':
 			tok->type = O_LES;
 			tok->content = "<";
+			unary = 0;
 			break;
 		case '>':
 			tok->type = O_GRE;
 			tok->content = ">";
+			unary = 0;
 			break;
 		case '&':
 			tok->type = O_AND;
@@ -116,8 +113,9 @@ char parse(struct token_info *n_info, char current) {
 			tok->content = "|";
 			break;
 		case '=':
-			tok->type = O_EQ;
+			tok->type = S_ASGN;
 			tok->content = "=";
+			unary = 0;
 			break;
 
 		// symbols
@@ -171,6 +169,33 @@ char parse(struct token_info *n_info, char current) {
 			return parse_word_or_number(n_info, current);	
 	}
 	n_info->val_c = current;
+	
+	// multi-symbol operators
+	if (!unary) {
+		char next = next_char();
+		if (current == '<' || current == '>' || current == '=' || current == '!') {
+			if (next == '=') {
+				tok->type++;
+				tok->content = append(tok->content, '=');
+				n_info->val_s = tok->content;
+			}
+			else
+				return_char(next);
+		}
+		else if (current == '+' && next == '+') {
+			tok->type = O_INC;
+			tok->content = "++";
+			n_info->val_s = tok->content;
+		}
+		else if (current == '-' && next == '-') {
+			tok->type = O_DEC;
+			tok->content = "++";
+			n_info->val_s = tok->content;
+
+		}
+		else
+			return_char(next);
+	}
 
 	return 0;
 }
@@ -181,7 +206,6 @@ char parse_char(struct token_info *n_info) {
 	if ((char_2 = next_char()) != '\'') {
 		error_m("Error in character literal, closing \' expected", n_info->line, n_info->column);
 		return_char(char_2);
-		skip_line();
 	}
 	else {
 		struct token *tok = malloc(sizeof(struct token));
@@ -241,13 +265,13 @@ char parse_word(struct token_info *n_info, char first) {
 	tok->type = T_IDEN;
 
 	if (strcmp(word, "int") == 0)
-		tok->type = T_INT;
+		tok->type = K_INT;
 	else if (strcmp(word, "float") == 0)
-		tok->type = T_FLT;
+		tok->type = K_FLT;
 	else if (strcmp(word, "char") == 0)
-		tok->type = T_CHR;
+		tok->type = K_CHR;
 	else if (strcmp(word, "string") == 0)
-		tok->type = T_STR;
+		tok->type = K_STR;
 	else if (strcmp(word, "if") == 0)
 		tok->type = K_IF;
 	else if (strcmp(word, "elif") == 0)
@@ -303,5 +327,69 @@ char parse_number(struct token_info *n_info, char first) {
 	n_info->val_i = atoi(number);
 
 	return_char(read);
+	return 0;
+}
+
+char verify_syntax() {
+	lex_state.current = lex_state.list;
+
+	while (info != NULL) {
+		consume_token();
+		lex_state.current = lex_state.current->next;
+	}
+
+	return 0;
+}
+
+char expect(enum token_type type) {
+	printf("Actual %s\n", lex_state.current->tok->content);
+	while(lex_state.current->next->tok->type == T_WHSP)
+		lex_state.current = lex_state.current->next;
+
+	printf("Actual %s\n", lex_state.current->tok->content);
+	if (lex_state.current->next->tok->type == type) {
+		lex_state.current = lex_state.current->next;
+		printf("Next %s\n", lex_state.current->next->tok->content);
+		return 0;
+	}
+	char *m = malloc(64);
+	sprintf(m, "Found %.8s, expected %.8s. (found \"%s\")", &token_names[lex_state.current->next->tok->type * 8], &token_names[type * 8], lex_state.current->next->tok->content);
+	error_m(m, lex_state.current->line, lex_state.current->column);
+	return 1;
+
+}
+
+void skip_tokens() {
+	while (lex_state.current != NULL && lex_state.current->tok->type != S_SCLN && lex_state.current->tok->type != S_LCBR)
+		lex_state.current = lex_state.current->next;
+}
+
+char consume_token() {
+	char error = 0;
+	switch (lex_state.current->tok->type) {
+		case K_INT:
+			error = consume_int_d();
+			break;
+		default:
+			break;
+	}
+
+	if (error)
+		skip_tokens();
+
+	return error;
+}
+
+char consume_int_d() {
+	if (expect(T_IDEN))
+		return 1;
+
+	if (!expect(S_ASGN)) 
+		if (!expect(T_INT))
+			return 1;
+
+	if (expect(S_SCLN))
+		return 1;
+
 	return 0;
 }

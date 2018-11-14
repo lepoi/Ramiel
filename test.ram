@@ -1,6 +1,1 @@
-int a;
-read(x);
-
-while (a < x) {
-	print(a++);
-}
+int a = 0;
