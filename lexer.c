@@ -16,6 +16,15 @@ char make_tokens() {
 		current = next_char(&lex_state);
 	}
 
+	struct token *eof_tok = malloc(sizeof(struct token));
+	eof_tok->type = T_EOF;
+	eof_tok->content = "";
+	struct token_info *eof_info = new_token_info(eof_tok);
+	eof_info->next = NULL;
+	eof_info->line = lex_state.line;
+	eof_info->column = lex_state.column;
+	append_token(eof_info);
+
 	// debugging
 	struct token_info *pointer = lex_state.list;
 	while (pointer != NULL) {
@@ -57,14 +66,6 @@ char parse(struct token_info *n_info, char current) {
 	char unary = 1;
 
 	switch (current) {
-		// whitespace
-		case ' ':
-		case '\t':
-		case '\n':
-			tok->type = T_WHSP;
-			tok->content = " ";
-			break;
-
 		// operators
 		case '*':
 			tok->type = O_MUL;
@@ -247,8 +248,10 @@ char parse_string(struct token_info *n_info) {
 char parse_word_or_number(struct token_info *n_info, char first) {
 	if (isdigit(first))
 		return parse_number(n_info, first);
-	else
+	else if (isalpha(first))
 		return parse_word(n_info, first);
+	else
+		return 1;
 }
 
 char parse_word(struct token_info *n_info, char first) {
@@ -333,44 +336,52 @@ char parse_number(struct token_info *n_info, char first) {
 char verify_syntax() {
 	lex_state.current = lex_state.list;
 
-	while (info != NULL) {
-		consume_token();
-		lex_state.current = lex_state.current->next;
+	while (lex_state.current != NULL && lex_state.current->next != NULL) {
+		if (!consume_token())
+			lex_state.current = lex_state.current->next;
 	}
 
 	return 0;
 }
 
-char expect(enum token_type type) {
-	printf("Actual %s\n", lex_state.current->tok->content);
-	while(lex_state.current->next->tok->type == T_WHSP)
-		lex_state.current = lex_state.current->next;
+char expect(enum token_type type, char required) {
+	if (!lex_state.current->next)
+		return 1;
 
-	printf("Actual %s\n", lex_state.current->tok->content);
 	if (lex_state.current->next->tok->type == type) {
 		lex_state.current = lex_state.current->next;
-		printf("Next %s\n", lex_state.current->next->tok->content);
 		return 0;
 	}
-	char *m = malloc(64);
-	sprintf(m, "Found %.8s, expected %.8s. (found \"%s\")", &token_names[lex_state.current->next->tok->type * 8], &token_names[type * 8], lex_state.current->next->tok->content);
-	error_m(m, lex_state.current->line, lex_state.current->column);
-	return 1;
 
+	if (required) {
+		char *m = malloc(64);
+		sprintf(m, "Expected %.8s, found %.8s", &token_names[type * 8], &token_names[lex_state.current->next->tok->type * 8]);
+		error_m(m, lex_state.current->line, lex_state.current->column);
+	}
+
+	return 1;
 }
 
 void skip_tokens() {
-	while (lex_state.current != NULL && lex_state.current->tok->type != S_SCLN && lex_state.current->tok->type != S_LCBR)
+	do {
+		if (lex_state.current->tok->type == T_EOF)
+			break;
 		lex_state.current = lex_state.current->next;
+	} while (lex_state.current->tok->type != S_SCLN && lex_state.current->tok->type != S_LCBR);
 }
 
 char consume_token() {
 	char error = 0;
 	switch (lex_state.current->tok->type) {
 		case K_INT:
-			error = consume_int_d();
+		case K_FLT:
+		case K_CHR:
+		case K_STR:
+			error = expect_decl();
 			break;
 		default:
+			printf("[ switch default ]\n");
+			error = 1;
 			break;
 	}
 
@@ -380,16 +391,65 @@ char consume_token() {
 	return error;
 }
 
-char consume_int_d() {
-	if (expect(T_IDEN))
-		return 1;
-
-	if (!expect(S_ASGN)) 
-		if (!expect(T_INT))
+char expect_decl() {
+	do {
+		if (expect(T_IDEN, 1))
 			return 1;
 
-	if (expect(S_SCLN))
+		if (!expect(S_ASGN, 0)) 
+			if (expect_lit_or_iden())
+				return 1;
+	
+	} while (!expect(S_CMA, 0));
+
+	if (expect(S_SCLN, 1))
 		return 1;
 
+	printf("Int declaration\n");
 	return 0;
+}
+
+char expect_lit_or_iden() {
+	if (!expect_lit())
+		return 0;
+
+	if (!expect_iden(1, 1))
+		return 0;
+
+	error_m("Expected T_IDEN or literal token", lex_state.current->line, lex_state.current->column);
+	return 1;
+}
+
+char expect_lit() {
+	unsigned char i;
+
+	for (i = 0; i < L_OPERATORS; i++)
+		if (!expect(l_operators[i], 0))
+			break;
+
+	for (i = 0; i < D_TYPES; i++) {
+		if (!expect(d_types[D_TYPES], 0))
+			return 0;
+	}
+
+	return 1;
+}
+
+char expect_iden(char left, char right) {
+	unsigned char i;
+	
+	if (left)
+		for (i = 0; i < L_OPERATORS; i++)
+			if (!expect(l_operators[i], 0))
+				break;
+
+	if (!expect(T_IDEN, 0)) {
+		if (right)
+			for (i = 0; i < R_OPERATORS; i++)
+				if (!expect(r_operators[i], 0))
+					break;
+		return 0;
+	}
+
+	return 1;
 }

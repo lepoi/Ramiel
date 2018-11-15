@@ -13,7 +13,7 @@ struct state lex_state = (struct state) { NULL, NULL, NULL, NULL, 0, 0, 1, 0 };
 
 void append_token(struct token_info *n_info) {
 	if (lex_state.list == NULL) {
-		lex_state.list= n_info;
+		lex_state.list = n_info;
 		return;
 	}
 	struct token_info *pointer = lex_state.list;
