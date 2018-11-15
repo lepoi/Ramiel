@@ -6,6 +6,7 @@
 #include "tokens.c"
 #include "state.c"
 #include "console.c"
+#include "syntax.c"
 
 struct token_info *info;
 
@@ -19,11 +20,3 @@ char parse_string(struct token_info *n_info);
 char parse_word_or_number(struct token_info *n_info, char first);
 char parse_word(struct token_info *n_info, char first);
 char parse_number(struct token_info *n_info, char first);
-char verify_syntax();
-char expect(enum token_type type, char required);
-void skip_tokens();
-char consume_token();
-char expect_decl();
-char expect_lit_or_iden();
-char expect_lit();
-char expect_iden(char left, char right);
