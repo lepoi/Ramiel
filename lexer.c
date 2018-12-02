@@ -28,7 +28,7 @@ char make_tokens() {
 	// debugging
 	struct token_info *pointer = lex_state.list;
 	while (pointer != NULL) {
-		printf("%6d %8d %.8s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
+		printf("%6d %8d %.6s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
 		pointer = pointer->next;
 	}
 
@@ -80,14 +80,12 @@ char parse(struct token_info *n_info, char current) {
 			tok->content = "%";
 			break;
 		case '+':
-			tok->type = O_SUM;
-			tok->content = "+";
-			unary = 0;
+			if (!parse_symbol_or_operand(n_info, "+"))
+				return 0;
 			break;
 		case '-':
-			tok->type = O_SUB;
-			tok->content = "-";
-			unary = 0;
+			if (!parse_symbol_or_operand(n_info, "-"))
+				return 0;
 			break;
 		case '!':
 			tok->type = O_NOT;
@@ -106,7 +104,6 @@ char parse(struct token_info *n_info, char current) {
 			break;
 		case '&':
 			tok->type = O_AND;
-
 			tok->content = "&";
 			break;
 		case '|':
@@ -182,17 +179,6 @@ char parse(struct token_info *n_info, char current) {
 			}
 			else
 				return_char(next);
-		}
-		else if (current == '+' && next == '+') {
-			tok->type = O_INC;
-			tok->content = "++";
-			n_info->val_s = tok->content;
-		}
-		else if (current == '-' && next == '-') {
-			tok->type = O_DEC;
-			tok->content = "++";
-			n_info->val_s = tok->content;
-
 		}
 		else
 			return_char(next);
@@ -289,6 +275,10 @@ char parse_word(struct token_info *n_info, char first) {
 		tok->type = K_PRNT;
 	else if (strcmp(word, "read") == 0)
 		tok->type = K_READ;
+	else if (strcmp(word, "break") == 0)
+		tok->type = K_READ;
+	else if (strcmp(word, "continue") == 0)
+		tok->type = K_READ;
 	
 	tok->content = word;
 	n_info->val_s = word;
@@ -330,5 +320,48 @@ char parse_number(struct token_info *n_info, char first) {
 	n_info->val_i = atoi(number);
 
 	return_char(read);
+	return 0;
+}
+
+char parse_symbol_or_operand(struct token_info *n_info, char *symbol) {
+	char next = next_char();
+
+	if (!parse_word_or_number(n_info, next)) {
+		n_info->tok->content = strcat(symbol, n_info->tok->content);
+		n_info->negative = 1;
+	}
+	else {
+		if (strcmp(symbol, "+") == 0) {
+			if (next == '+') {
+				n_info->tok->type = O_INC;
+				n_info->tok->content = "++";
+				n_info->val_s = "++";
+				n_info->val_s = n_info->tok->content;
+			}
+			else {
+				n_info->tok->type = O_SUM;
+				n_info->tok->content = "+";
+				n_info->val_c = '+';
+				return_char(next);
+			}
+		}
+		else if (strcmp(symbol, "-") == 0) {
+			if (next == '-') {
+				n_info->tok->type = O_DEC;
+				n_info->tok->content = "--";
+				n_info->val_s = "--";
+				n_info->val_s = n_info->tok->content;
+			}
+			else {
+				n_info->tok->type = O_SUB;
+				n_info->tok->content = "-";
+				n_info->val_c = '-';
+				return_char(next);
+			}
+		}
+		
+		return 1;
+	}
+
 	return 0;
 }
