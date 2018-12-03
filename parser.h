@@ -1,6 +1,8 @@
 #include "hashtable.c"
 #include "stack.c"
 
+char *iden;
+
 char analyze();
 void skip_tokens();
 char consume_token();

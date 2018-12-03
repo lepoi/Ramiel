@@ -1,3 +1,5 @@
+#define max(a, b) ((a) > (b) ? (a) : (b))
+
 #define arr_len(arr) (sizeof(arr) / sizeof(arr[0]))
 
 char *append(char *array, char a) {

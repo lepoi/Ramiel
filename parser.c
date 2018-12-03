@@ -1,5 +1,5 @@
 #include "parser.h"
-
+	
 char analyze() {
 	lex_state.current = lex_state.list;
 
@@ -80,11 +80,9 @@ char expect_lit_or_iden(char stack) {
 	
 	if (!error) {
 		if (stack) {
-			// lookup identifier
-			// identifier name?
-
-			// struct stack_item *item = new_stack_item(lex_state.current->tok->type - 40, 0);
-			// push(lex_state.stack, item);
+			struct ht_item *item = lookup_item(lex_state.variables, iden);
+			struct stack_item *st_item = new_stack_item(item->type, 0);
+			push(lex_state.stack, st_item);
 		}
 
 		return 0;
@@ -127,6 +125,8 @@ char expect_iden(char left, char right) {
 		if (lookup_item(lex_state.variables, lex_state.current->tok->content) == NULL)
 			return 2;
 
+		iden = strdup(lex_state.current->tok->content);
+
 		if (right)
 			for (i = 0; i < R_OPERATORS; i++)
 				if (!expect(r_operators[i], 0))
@@ -157,32 +157,28 @@ char expect_operator(char required) {
 
 char expect_operation() {
 	if (!expect(S_LPAR, 0)) {
-		printf(">> found left parenthesis\n");
-		expect_operation();
-		printf(">> after nested operation\n");
-		return (expect(S_RPAR, 1));
+		if (expect_operation())
+			return 1;
+		if (expect(S_RPAR, 1))
+			return 1;
 	}
-	else {
-		if (expect_lit_or_iden(1))
+	else if (expect_lit_or_iden(1))
+		return 1;
+
+	if (!expect_operator(0)) {
+		char operator = lex_state.current->val_c;
+
+		if (expect_operation())
 			return 1;
 
-		printf("operand:\t%s\n", lex_state.current->tok->content);
-
-		if (!expect_operator(0)) {
-			printf("operator:\t%s\n", lex_state.current->tok->content);
-			char operator = lex_state.current->val_c;
-
-			if (expect_operation())
-				return 1;
-
-			stack_operation(stack, operator);
-		}
+		return stack_operation(lex_state.stack, operator);
 	}
 
 	return 0;
 }
 
 char expect_decl(enum token_type type) {
+	char *id;
 	do {
 		if (expect(T_IDEN, 1))
 			return 1;
@@ -194,6 +190,7 @@ char expect_decl(enum token_type type) {
 
 			return 1;
 		}
+		id = strdup(lex_state.current->tok->content);
 
 		if (!expect(S_LSBR, 0)) {
 			if (expect_operation())
@@ -202,20 +199,21 @@ char expect_decl(enum token_type type) {
 			if (expect(S_RSBR, 1))
 				return 1;
 
-			printf(">> pop top value from stack\n");
+			// TODO: pop top of stack as array length
 		}
 
-		// swtich (lex_state.current->tok->type) {
-		// 	case
-		// }
-		// fprntf(lex_state.output, "");
-
-		if (!expect(S_ASGN, 0)) 
+		if (!expect(S_ASGN, 0)) {
 			if (expect_operation())
 				return 1;
-	
+
+			struct stack_item *item = pop(lex_state.stack);
+			if (item->type > type - 40)
+				warning_m("Assigned higher precision value to variable with lower precision, may cause unexpected behavior", lex_state.current->line, lex_state.current->column);
+		}
+
+
 		// TODO: change size to reflect value in square brackets
-		struct ht_item *var = new_ht_item(lex_state.current->tok->content, 0, type - 40);
+		struct ht_item *var = new_ht_item(id, 0, type - 40);
 		hash_item(lex_state.variables, var);
 	} while (!expect(S_CMA, 0));
 

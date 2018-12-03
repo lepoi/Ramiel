@@ -3,6 +3,8 @@ enum data_t {
 	DATA_CHRV, DATA_INTV, DATA_FLTV, DATA_STRV
 };
 
+char *data_t_str = "DATA_CHRDATA_INTDATA_FLTDATA_STR";
+
 struct ht_item {
 	char *identifier;
 	size_t size;

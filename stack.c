@@ -39,15 +39,21 @@ char stack_operation(struct stack *stack, char operator) {
 	struct stack_item *item1 = pop(stack);
 	struct stack_item *item2 = pop(stack);
 
-	if (!(item1 || item2))
+	if (!(item1 && item2))
 		return 1;
 
-	enum data_t type;
-	//TODO: size (only if array is considered a lilteral)
+	if (item1->size || item2->size) {
+		error_m("Cannot perform operations with arrays", lex_state.line, lex_state.column);
+		return 1;
+	}
 
-	if ()
+	if ((item1->type == DATA_STR || item2->type == DATA_STR) && operator != '+') {
+		error_m("Only sum operations are permitted with string type", lex_state.line, lex_state.column);
+		return 1;
+	}
 
-	struct stack_item *item = new_stack_item();
+	struct stack_item *item = new_stack_item(max(item1->type, item2->type), max(item1->size, item2->size));
+	push(stack, item);
 
 	return 0;
 }
