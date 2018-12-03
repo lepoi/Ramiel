@@ -34,3 +34,20 @@ struct stack_item *pop(struct stack *stack) {
 
 	return item;
 }
+
+char stack_operation(struct stack *stack, char operator) {
+	struct stack_item *item1 = pop(stack);
+	struct stack_item *item2 = pop(stack);
+
+	if (!(item1 || item2))
+		return 1;
+
+	enum data_t type;
+	//TODO: size (only if array is considered a lilteral)
+
+	if ()
+
+	struct stack_item *item = new_stack_item();
+
+	return 0;
+}

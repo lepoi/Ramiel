@@ -5,7 +5,7 @@ char analyze();
 void skip_tokens();
 char consume_token();
 char expect(enum token_type type, char required);
-char expect_lit_or_iden();
+char expect_lit_or_iden(char stack);
 char expect_lit();
 char expect_iden(char left, char right);
 char expect_operator(char required);

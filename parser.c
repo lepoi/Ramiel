@@ -25,7 +25,6 @@ char consume_token() {
 	char error = 0;
 	char *m;
 
-	printf("> consume_token() on %.8s token\n", &token_names[lex_state.current->tok->type * 8]);
 	switch (lex_state.current->tok->type) {
 		case K_INT:
 		case K_FLT:
@@ -65,15 +64,31 @@ char expect(enum token_type type, char required) {
 	return 1;
 }
 
-char expect_lit_or_iden() {
+char expect_lit_or_iden(char stack) {
 	char error;
-	if (!expect_lit())
+	if (!expect_lit()) {
+		if (stack) {
+			// TODO: size (?)
+			struct stack_item *item = new_stack_item(lex_state.current->tok->type - 40, 0);
+			push(lex_state.stack, item);
+		}
+
 		return 0;
+	}
 
 	error = expect_iden(1, 1);
 	
-	if (!error)
+	if (!error) {
+		if (stack) {
+			// lookup identifier
+			// identifier name?
+
+			// struct stack_item *item = new_stack_item(lex_state.current->tok->type - 40, 0);
+			// push(lex_state.stack, item);
+		}
+
 		return 0;
+	}
 	if (error == 1)
 		error_m("Expected literal or identifier token", lex_state.current->line, lex_state.current->column);
 	if (error == 2) {	
@@ -142,15 +157,26 @@ char expect_operator(char required) {
 
 char expect_operation() {
 	if (!expect(S_LPAR, 0)) {
+		printf(">> found left parenthesis\n");
 		expect_operation();
+		printf(">> after nested operation\n");
 		return (expect(S_RPAR, 1));
 	}
 	else {
-		if (expect_lit_or_iden())
+		if (expect_lit_or_iden(1))
 			return 1;
 
-		if (!expect_operator(0))
-			return expect_operation();		
+		printf("operand:\t%s\n", lex_state.current->tok->content);
+
+		if (!expect_operator(0)) {
+			printf("operator:\t%s\n", lex_state.current->tok->content);
+			char operator = lex_state.current->val_c;
+
+			if (expect_operation())
+				return 1;
+
+			stack_operation(stack, operator);
+		}
 	}
 
 	return 0;
@@ -175,6 +201,8 @@ char expect_decl(enum token_type type) {
 
 			if (expect(S_RSBR, 1))
 				return 1;
+
+			printf(">> pop top value from stack\n");
 		}
 
 		// swtich (lex_state.current->tok->type) {
@@ -187,7 +215,7 @@ char expect_decl(enum token_type type) {
 				return 1;
 	
 		// TODO: change size to reflect value in square brackets
-		struct ht_item *var = new_ht_item(lex_state.current->tok->content, 1, type - 40);
+		struct ht_item *var = new_ht_item(lex_state.current->tok->content, 0, type - 40);
 		hash_item(lex_state.variables, var);
 	} while (!expect(S_CMA, 0));
 

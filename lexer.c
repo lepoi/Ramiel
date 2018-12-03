@@ -118,7 +118,7 @@ char parse(struct token_info *n_info, char current) {
 
 		// symbols
 		case '(':
-			tok->type = S_RPAR;
+			tok->type = S_LPAR;
 			tok->content = "(";
 			break;
 		case ')':
