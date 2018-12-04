@@ -35,7 +35,7 @@ struct stack_item *pop(struct stack *stack) {
 	return item;
 }
 
-char stack_operation(struct stack *stack, char operator) {
+char stack_operation(struct stack *stack, char *operator) {
 	struct stack_item *item1 = pop(stack);
 	struct stack_item *item2 = pop(stack);
 
@@ -47,7 +47,7 @@ char stack_operation(struct stack *stack, char operator) {
 		return 1;
 	}
 
-	if ((item1->type == DATA_STR || item2->type == DATA_STR) && operator != '+') {
+	if ((item1->type == DATA_STR || item2->type == DATA_STR) && strcmp(operator, "+") != 0) {
 		error_m("Only sum operations are permitted with string type", lex_state.line, lex_state.column);
 		return 1;
 	}

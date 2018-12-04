@@ -11,14 +11,25 @@ enum token_type {
 #define D_TYPES 4
 #define LITERALS 4
 #define OPERATORS 13
+#define L_OPERATORS 2
 #define R_OPERATORS 2
-#define L_OPERATORS 1
 
-enum token_type d_types [D_TYPES] = { K_INT, K_FLT, K_CHR, K_STR };
-enum token_type literals [LITERALS] = { T_INT, T_FLT, T_CHR, T_STR };
-enum token_type operators [OPERATORS] = { O_SUM, O_SUB, O_MUL, O_DIV, O_MOD, O_NEQ, O_LES, O_LEEQ, O_GRE, O_GREQ, O_EQ, O_AND, O_OR };
+enum token_type d_types [D_TYPES] = { K_CHR, K_INT, K_FLT, K_STR };
+enum token_type literals [LITERALS] = { T_CHR, T_INT, T_FLT, T_STR };
+enum token_type operators [OPERATORS] = { O_SUM, O_SUB, O_MUL, O_DIV, O_MOD, O_EQ, O_NEQ, O_GRE, O_GREQ, O_LES, O_LEEQ, O_AND, O_OR };
+enum token_type l_operators [L_OPERATORS] = { O_INC, O_DEC };
 enum token_type r_operators [R_OPERATORS] = { O_INC, O_DEC };
-enum token_type l_operators [L_OPERATORS] = { O_NOT };
+
+char *d_types_code = "CIFS";
+char *operator_code = "ADDSUBMULDIVMODCEQCNECGTCGECLTCLE";
+char *l_operator_code [L_OPERATORS] = {
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
+};
+char *r_operator_code [R_OPERATORS] = {
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
+};
 
 struct token {
 	enum token_type type;

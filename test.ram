@@ -1,2 +1,1 @@
-string b;
-int a = 1 + (2 - 3 + 2.99);
+char a = 60 + 1;
