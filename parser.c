@@ -32,6 +32,8 @@ char consume_token() {
 		case K_STR:
 			error = expect_decl(lex_state.current->tok->type + 23);
 			break;
+		case T_IDEN:
+			error = expect_asn(lex_state.current->tok->type + 23);
 		default:
 			m = malloc(64);
 			sprintf(m, ">> Found %.8s token\n", &token_names[lex_state.current->tok->type * 8]);
@@ -229,4 +231,19 @@ char expect_eoi() {
 		return 1;
 
 	return 0;
+}
+
+char expect_asgn(enum token_type type){
+	char *id;
+	id = strdup(lex_state.current->tok->content);
+	if (!expect(S_ASGN, 1))
+		if(!expect_operation()){
+			struct stack_item *item = pop(lex_state.stack);
+			if (item->type > type - 40)
+				warning_m("Assigned higher precision value to variable with lower precision, may cause unexpected behavior", lex_state.current->line, lex_state.current->column);
+		}
+			if (!expect_eoi())
+				fprintf(lex_state.output,"POP%c %s\n",lookup_item(lex_state.variables,id),id);//pop con el tipo de la variabe y nombre de la variable
+				return 0;
+	return 1;
 }
