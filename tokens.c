@@ -20,7 +20,13 @@ enum token_type operators [OPERATORS] = { O_SUM, O_SUB, O_MUL, O_DIV, O_MOD, O_E
 enum token_type l_operators [L_OPERATORS] = { O_INC, O_DEC };
 enum token_type r_operators [R_OPERATORS] = { O_INC, O_DEC };
 
-char *d_types_code = "CIFS";
+char *d_types_code = "CIDS";
+char *d_types_mneumonic [D_TYPES] = {
+	"char",
+	"integer",
+	"float",
+	"string"
+};
 char *operator_code = "ADDSUBMULDIVMODCEQCNECGTCGECLTCLE";
 char *l_operator_code [L_OPERATORS] = {
 	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",

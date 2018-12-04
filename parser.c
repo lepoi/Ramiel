@@ -1,5 +1,5 @@
 #include "parser.h"
-	
+
 char analyze() {
 	lex_state.current = lex_state.list;
 
@@ -9,6 +9,15 @@ char analyze() {
 	}
 
 	return 0;
+}
+
+void rewind_token() {
+	struct token_info *new = new_token_info(lex_state.current->tok);
+	new->next = lex_state.current->next;
+	new->line = lex_state.current->line;
+	new->column = lex_state.current->column;
+	new->negative = lex_state.current->negative;
+	lex_state.current->next = new;
 }
 
 void skip_tokens() {
@@ -30,29 +39,40 @@ char consume_token() {
 		case K_FLT:
 		case K_CHR:
 		case K_STR:
-			error = expect_decl(lex_state.current->tok->type + 23);
+			error = expect_decl(1, lex_state.current->tok->type + 23);
 			break;
 		case T_IDEN:
-			error = expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content));
+			if (lex_state.current->next->tok->type == S_ASGN)
+				error = expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content));
+			else {
+				rewind_token();
+				error = expect_operation();
+			}
 			break;
 		case K_IF:
-			expect_if();
+			error = expect_if();
 			break;
 		case K_WHLE:
-			expect_while();
+			error = expect_while();
 			break;
 		case K_FOR:
-			expect_for();
+			error = expect_for();
 			break;
 		case K_PRNT:
-			expect_print();
+			error = expect_print();
 			break;
 		case K_READ:
-			expect_read();
+			error = expect_read();
+			break;
+		case S_LPAR:
+		case O_INC:
+		case O_DEC:
+			rewind_token();
+			error = expect_operation();
 			break;
 		default:
 			m = malloc(64);
-			sprintf(m, ">> Found %.8s token\n", &token_names[lex_state.current->tok->type * 8]);
+			sprintf(m, "Unexpected \"%s\" - token: %.6s\n", lex_state.current->tok->content, &token_names[lex_state.current->tok->type * 8]);
 			warning_m(m, lex_state.current->line, lex_state.current->column);
 			error = 1;
 			break;
@@ -78,7 +98,7 @@ char expect(enum token_type type, char required) {
 	if (required) {
 		char *m = malloc(64);
 		sprintf(m, "Expected %.8s\nFound %.8s", &token_names[type * 8], &token_names[lex_state.current->next->tok->type * 8]);
-		error_m(m, lex_state.current->line, lex_state.current->column);
+		error_m(m, lex_state.current->next->line, lex_state.current->next->column);
 	}
 
 	return 1;
@@ -123,7 +143,7 @@ char expect_lit_or_iden(char stack) {
 		error_m("Expected literal or identifier token", lex_state.current->line, lex_state.current->column);
 	if (error == 2) {	
 		char *m = malloc(128);
-		sprintf(m, "Variable with name \"%s\" has not been already declared", lex_state.current->tok->content);
+		sprintf(m, "Variable with name \"%s\" has not been declared", lex_state.current->tok->content);
 		error_m(m, lex_state.current->line, lex_state.current->column);
 	}
 
@@ -207,7 +227,7 @@ char expect_operator(char required) {
 		}
 
 	if (required)
-		error_m("Expected operator token", lex_state.current->line, lex_state.current->column);
+		error_m("Expected operator token", lex_state.current->next->line, lex_state.current->next->column);
 
 	return 1;
 }
@@ -223,7 +243,8 @@ char expect_operation() {
 		return 1;
 
 	if (!expect_operator(0)) {
-		char *operator = &operator_code[ope * 3];
+		char *operator = malloc(3);
+		sprintf(operator, "%.3s", &operator_code[ope * 3]);
 
 		if (expect_operation())
 			return 1;
@@ -235,7 +256,7 @@ char expect_operation() {
 	return 0;
 }
 
-char expect_decl(enum token_type type) {
+char expect_decl(char multiple, enum token_type type) {
 	char *id;
 	do {
 		if (expect(T_IDEN, 1))
@@ -266,8 +287,11 @@ char expect_decl(enum token_type type) {
 				return 1;
 
 			struct stack_item *item = pop(lex_state.stack);
-			if (item->type > type - 40)
-				warning_m("Assigned higher precision value to variable with lower precision, may cause unexpected behavior", lex_state.current->line, lex_state.current->column);
+			if (item->type > type - 40) {
+				char *m = malloc(64);
+				sprintf(m, "Assigned %s value to %s variable, may cause unexpected behavior", d_types_mneumonic[item->type], d_types_mneumonic[type - 40]);
+				warning_m(m, lex_state.current->line, lex_state.current->column);
+			}
 		}
 
 
@@ -276,6 +300,9 @@ char expect_decl(enum token_type type) {
 		hash_item(lex_state.variables, var);
 
 		fprintf(lex_state.output, "POP%.1s %s\n", &d_types_code[type - 40], id);
+
+		if (!multiple)
+			break;
 	} while (!expect(S_CMA, 0));
 
 	printf("Successfully parsed DECLARATION\n");
@@ -283,44 +310,36 @@ char expect_decl(enum token_type type) {
 }
 
 char expect_asgn(struct ht_item *item) {
+	char *id = lex_state.current->tok->content;
 	if (item == NULL) {
 		char *m = malloc(128);
-		sprintf(m, "Variable with name \"%s\" has not been already declared", lex_state.current->tok->content);
+		sprintf(m, "Variable with name \"%s\" has not been declared", id);
 		error_m(m, lex_state.current->line, lex_state.current->column);
 
 		return 1;
 	}
+	if (expect(S_ASGN, 1))
+		return 1;
 
-	if (!expect(T_IDEN, 1))
-		if (!expect(S_ASGN, 1))
-			if (!expect_operation())
-				return 0;
+	if (!expect_operation()) {
+		struct stack_item *s_item = pop(lex_state.stack);
+
+		if (s_item->type > item->type) {
+			char *m = malloc(64);
+			sprintf(m, "Assigned %s value to %s variable, may cause unexpected behavior", d_types_mneumonic[s_item->type], d_types_mneumonic[item->type]);
+			warning_m(m, lex_state.current->line, lex_state.current->column);
+		}
+
+		fprintf(lex_state.output, "POP%.1s %s", &d_types_code[s_item->type], id);
+		printf("Successfully parsed ASSIGN\n");
+		return 0;
+	}
 
 	return 1;
 }
 
 char expect_if() {
-	if (!expect(S_LPAR, 1)) {
-		if (!expect_data_type(0)) {
-			// switch (lex_state.current->tok->type) {
-			// 	case K_CHR:
-			// 		break;
-			// 	case K_INT:
-			// 		break;
-			// 	case K_FLT:
-			// 		break;
-			// 	case K_STR:
-			// 		break;
-			// }
-
-			return 0;
-		}
-		else {
-
-		}
-	}
-
-	return 1;
+	return 0;
 }
 
 char expect_while() {
@@ -328,7 +347,73 @@ char expect_while() {
 }
 
 char expect_for() {
-	return 0;
+	if (!expect(S_LPAR, 1)) {
+		do {
+			if (!expect_data_type(0)) {
+				if (expect_decl(0, lex_state.current->tok->type - 17))
+					return 1;
+			}
+			else if (!expect(T_IDEN, 0)) {
+				if (expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content)))
+					return 1;
+			}
+			else
+				break;
+		} while (expect(S_CMA, 0));
+
+		if (expect(S_SCLN, 1))
+			return 1;
+
+		if (expect_operation())
+			return 1;
+
+		if (expect(S_SCLN, 1))
+			return 1;
+
+		do {
+			for (int i = 0; i < L_OPERATORS; i++) {
+				if (!expect(l_operators[i], 0)) {
+					rewind_token();
+					if (expect_operation())
+						return 1;
+					
+					continue;
+				}
+			}
+		
+			if (expect(T_IDEN, 1))
+				return 1;
+
+			// TODO: add brackets for array elements
+
+			if (lex_state.current->next->tok->type == S_ASGN) {
+				if (expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content)))
+					return 1;
+			}
+			else {
+				rewind_token();
+				expect_operation();
+			}
+
+		} while (!expect(S_CMA, 0));
+
+
+		if (expect(S_RPAR, 1))
+			return 1;
+
+		if (expect(S_LCBR, 1))
+			return 1;
+
+		if (expect_body())
+			return 1;
+
+		if (expect(S_RCBR, 1))
+			return 1;
+
+		printf("Successfully parsed FOR_CYCLE\n");
+		return 0;
+	}
+	return 1;
 }
 
 char expect_print() {
@@ -339,24 +424,95 @@ char expect_read() {
 	return 0;
 }
 
+char expect_body() {
+	char error;
+
+	if (lex_state.current->next)
+		lex_state.current = lex_state.current->next;
+
+	while (lex_state.current->tok->type != S_RCBR) {
+		error = consume_body_token();
+		if (!error)
+			lex_state.current = lex_state.current->next;
+	}
+	rewind_token();
+
+	return 0;
+}
+
+void skip_body_tokens() {
+	do {
+		if (lex_state.current->tok->type == T_EOF) {
+			error_m("Unexpected end of file, colsing '}' expected", lex_state.current->line, lex_state.current->column);
+			break;
+		}
+		lex_state.current = lex_state.current->next;
+	} while (lex_state.current->tok->type != S_SCLN && lex_state.current->tok->type != S_LCBR);
+
+	lex_state.current = lex_state.current->next;
+}
+
+char consume_body_token() {
+	char *m;
+	char error;
+
+	switch (lex_state.current->tok->type) {
+		case S_RCBR:
+			return 0;
+		case K_INT:
+		case K_FLT:
+		case K_CHR:
+		case K_STR:
+			error = expect_decl(1, lex_state.current->tok->type + 23);
+			break;
+		case T_IDEN:
+			if (lex_state.current->next->tok->type == S_ASGN)
+				error = expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content));
+			else {
+				rewind_token();
+				error = expect_operation();
+			}
+			break;
+		case K_IF:
+			error = expect_if();
+			break;
+		case K_WHLE:
+			error = expect_while();
+			break;
+		case K_FOR:
+			error = expect_for();
+			break;
+		case K_PRNT:
+			error = expect_print();
+			break;
+		case K_READ:
+			error = expect_read();
+			break;
+		case S_LPAR:
+		case O_INC:
+		case O_DEC:
+			rewind_token();
+			error = expect_operation();
+			break;
+		default:
+			m = malloc(64);
+			sprintf(m, "Unexpected token %.8s\n", &token_names[lex_state.current->tok->type * 8]);
+			warning_m(m, lex_state.current->line, lex_state.current->column);
+			error = 1;
+			break;
+	}
+
+	if (error)
+		skip_body_tokens();
+	else
+		return expect_eoi(1);
+
+	return error;
+}
+
 char expect_eoi() {
 	if (expect(S_SCLN, 1))
 		return 1;
 
 	return 0;
 }
-
-// char expect_asgn(enum token_type type){
-// 	char *id;
-// 	id = strdup(lex_state.current->tok->content);
-// 	if (!expect(S_ASGN, 1))
-// 		if(!expect_operation()){
-// 			struct stack_item *item = pop(lex_state.stack);
-// 			if (item->type > type - 40)
-// 				warning_m("Assigned higher precision value to variable with lower precision, may cause unexpected behavior", lex_state.current->line, lex_state.current->column);
-// 		}
-// 			if (!expect_eoi())
-// 				fprintf(lex_state.output,"POP%c %s\n",lookup_item(lex_state.variables,id),id);//pop con el tipo de la variabe y nombre de la variable
-// 				return 0;
-// 	return 1;
-// }

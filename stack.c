@@ -52,7 +52,24 @@ char stack_operation(struct stack *stack, char *operator) {
 		return 1;
 	}
 
-	struct stack_item *item = new_stack_item(max(item1->type, item2->type), max(item1->size, item2->size));
+	enum data_t type;
+
+	if (strcmp(operator, "CEQ") == 0)
+		type = DATA_INT;
+	else if (strcmp(operator, "CNE") == 0)
+		type = DATA_INT;
+	else if (strcmp(operator, "CGT") == 0)
+		type = DATA_INT;
+	else if (strcmp(operator, "CGE") == 0)
+		type = DATA_INT;
+	else if (strcmp(operator, "CLT") == 0)
+		type = DATA_INT;
+	else if (strcmp(operator, "CLE") == 0)
+		type = DATA_INT;
+	else
+		type = max(item1->type, item2->type);
+
+	struct stack_item *item = new_stack_item(type, max(item1->size, item2->size));
 	push(stack, item);
 
 	return 0;
