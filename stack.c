@@ -8,10 +8,10 @@ struct stack *new_stack() {
 	return stack;
 }
 
-struct stack_item *new_stack_item(enum data_t type, size_t size) {
+struct stack_item *new_stack_item(enum data_t type, char array) {
 	struct stack_item *item = malloc(sizeof(struct stack_item));
 	item->type = type;
-	item->size = size;
+	item->array = array;
 	item->next = NULL;
 
 	return item;
@@ -42,10 +42,10 @@ char stack_operation(struct stack *stack, char *operator) {
 	if (!(item1 && item2))
 		return 1;
 
-	if (item1->size || item2->size) {
-		error_m("Cannot perform operations with arrays", lex_state.line, lex_state.column);
-		return 1;
-	}
+	// if (item1->array || item2->array) {
+	// 	error_m("Cannot perform operations with arrays", lex_state.line, lex_state.column);
+	// 	return 1;
+	// }
 
 	if ((item1->type == DATA_STR || item2->type == DATA_STR) && strcmp(operator, "+") != 0) {
 		error_m("Only sum operations are permitted with string type", lex_state.line, lex_state.column);
@@ -59,7 +59,7 @@ char stack_operation(struct stack *stack, char *operator) {
 	else
 		type = max(item1->type, item2->type);
 
-	struct stack_item *item = new_stack_item(type, max(item1->size, item2->size));
+	struct stack_item *item = new_stack_item(type, max(item1->array, item2->array));
 	push(stack, item);
 
 	return 0;

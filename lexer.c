@@ -27,10 +27,8 @@ char make_tokens() {
 
 	// debugging
 	struct token_info *pointer = lex_state.list;
-	while (pointer != NULL) {
-		printf("%6d %8d %.6s\t%s\n", pointer->line, pointer->column, &token_names[pointer->tok->type * 8], pointer->tok->content);
+	while (pointer != NULL)
 		pointer = pointer->next;
-	}
 
 	fclose(lex_state.input);
 	return error;

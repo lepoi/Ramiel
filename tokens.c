@@ -22,7 +22,7 @@ enum token_type l_operators [L_OPERATORS] = { O_INC, O_DEC };
 enum token_type r_operators [R_OPERATORS] = { O_INC, O_DEC };
 
 char *d_types_code = "CIDS";
-char *d_types_mneumonic [D_TYPES] = {
+char *d_types_mnemonic [D_TYPES] = {
 	"char",
 	"integer",
 	"float",
@@ -30,12 +30,18 @@ char *d_types_mneumonic [D_TYPES] = {
 };
 char *operator_code = "ADDSUBMULDIVMODCEQCNECGTCGECLTCLE";
 char *l_operator_code [L_OPERATORS] = {
-	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
-	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%s %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%s %s\n"
 };
 char *r_operator_code [R_OPERATORS] = {
-	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
-	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%s %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%s %s\n"
+};
+char *l_operators_mnemonic [L_OPERATORS] = {
+	"increment", "decrement"
+};
+char *r_operators_mnemonic [L_OPERATORS] = {
+	"increment", "decrement"
 };
 
 struct token {

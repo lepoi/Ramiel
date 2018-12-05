@@ -1,5 +1,3 @@
-int i, j;
-
-for (i = 0; i < 10; i++) {
-	j = i;
-};
+char v [5];
+v[0] = "1";
+println(v[0] + 1.3);

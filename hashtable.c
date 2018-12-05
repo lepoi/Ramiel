@@ -31,10 +31,10 @@ void rm_ht_helper(struct ht_item *item) {
 		rm_ht_helper(item->next);
 }
 
-struct ht_item *new_ht_item(const char *identifier, size_t size, enum data_t type) {
+struct ht_item *new_ht_item(const char *identifier, char array, enum data_t type) {
 	struct ht_item *item = malloc(sizeof(struct ht_item));
 	item->identifier = strdup(identifier);
-	item->size = size;
+	item->array = array;
 	item->type = type;
 	item->next = NULL;
 	

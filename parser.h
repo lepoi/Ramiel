@@ -10,6 +10,7 @@ void skip_tokens();
 char consume_token();
 char expect(enum token_type type, char required);
 char expect_data_type(char required);
+// char expect_array_lit(enum data_t type, ushort elements, char required);
 char expect_lit_or_iden(char stack);
 char expect_lit();
 char expect_iden(char left, char right);
