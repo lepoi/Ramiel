@@ -50,13 +50,13 @@ char consume_token() {
 			}
 			break;
 		case K_IF:
-			error = expect_if();
+			error = expect_if(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_WHLE:
-			error = expect_while();
+			error = expect_while(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_FOR:
-			error = expect_for();
+			error = expect_for(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_PRNT:
 			error = expect_print();
@@ -342,17 +342,17 @@ char expect_asgn(struct ht_item *item) {
 	return 1;
 }
 
-char expect_if() {
+char expect_if(unsigned short line, unsigned short column) {
 	return 0;
 }
 
-char expect_while() {
+char expect_while(unsigned short line, unsigned short column) {
 	return 0;
 }
 
-char expect_for() {
+char expect_for(unsigned short line, unsigned short column) {
 	if (!expect(S_LPAR, 1)) {
-		// fprintf(lex_state.output, "\tfor_l%ic%i_1\n", );
+		fprintf(lex_state.output, "\tfor_l%ic%i_1\n", line, column);
 		do {
 			if (!expect_data_type(0)) {
 				if (expect_decl(0, lex_state.current->tok->type - 17))
@@ -479,13 +479,13 @@ char consume_body_token() {
 			}
 			break;
 		case K_IF:
-			error = expect_if();
+			error = expect_if(lex_state.current->line, lex_state.current);
 			break;
 		case K_WHLE:
-			error = expect_while();
+			error = expect_while(lex_state.current->line, lex_state.current);
 			break;
 		case K_FOR:
-			error = expect_for();
+			error = expect_for(lex_state.current->line, lex_state.current);
 			break;
 		case K_PRNT:
 			error = expect_print();

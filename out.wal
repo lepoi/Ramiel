@@ -1,5 +1,6 @@
 DCLI i
 DCLI j
+	for_l3c1_1
 PUSHKI 0
 POPI i
 PUSH i
@@ -10,6 +11,7 @@ PUSH i
 PUSHKI 1
 ADD
 POPI i
+	for_l4c12752_1
 PUSHKI 0
 POPI j
 PUSH j
