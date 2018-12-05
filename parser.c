@@ -343,6 +343,44 @@ char expect_asgn(struct ht_item *item) {
 }
 
 char expect_if(ushort line, ushort column) {
+	fprintf(lex_state.output, "\twl%uc%uco:", line, column);
+	if (expect(S_LPAR, 1))
+		return 1;
+
+	if (expect_operation())
+		return 1;
+
+	if (expect(S_RPAR, 1))
+		return 1;
+	
+	fprintf(lex_state.output, "JMPC wl%uc%uex", line, column);
+
+	if (expect(S_LCBR, 1))
+		return 1;
+
+	if (expect_body())
+		return 1;
+
+	if (expect(S_RCBR, 1))
+		return 1;
+	fprintf(lex_state.output, "\twl%uc%uex:", line, column);
+	if (expect(K_ELSE, 0)){
+		if(expect(K_EIF, 0)){
+			return 0;
+		}else{
+			expect_if( line, column);
+		}
+	}
+	else{
+		if (expect(S_LCBR, 1))
+			return 1;
+
+		if (expect_body())
+			return 1;
+
+		if (expect(S_RCBR, 1))
+			return 1;
+	}
 	return 0;
 }
 
