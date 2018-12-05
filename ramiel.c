@@ -25,6 +25,7 @@ int main(int argc, char *args[]) {
 		return 1;
 	}
 	lex_state.stack = new_stack();
+	lex_state.ope_stack = new_ope_stack();
 	lex_state.variables = new_ht(128);
 
 	char error = analyze();

@@ -306,29 +306,68 @@ char expect_operator(char required) {
 }
 
 char expect_operation() {
+	char last = 1;
 	// TODO: operator hierarchy
 	if (!expect(S_LPAR, 0)) {
+		struct ope_stack_item *par = new_ope_stack_item("(");
+		push_ope(lex_state.ope_stack, par);
+
 		if (expect_operation())
 			return 1;
 		if (expect(S_RPAR, 1))
 			return 1;
+
+		par = new_ope_stack_item(")");
+		push_ope(lex_state.ope_stack, par);
+
+
 	}
 	else if (expect_lit_or_iden(1))
 		return 1;
 
-
-
+	char *operator = malloc(3);
 	if (!expect_operator(0)) {
-		char *operator = malloc(3);
 		sprintf(operator, "%.3s", &operator_code[ope * 3]);
 
+		struct ope_stack_item *ope = new_ope_stack_item(operator);
+		push_ope(lex_state.ope_stack, ope);
+
+		if (lex_state.ope_stack->count < 2)
+			goto next_ope;
+		if (strcmp(lex_state.ope_stack->top->ope, ")") == 0)
+			goto next_ope;
+
+		if (lex_state.ope_stack->top->prio < lex_state.ope_stack->top->next->prio) {
+			pop_ope(lex_state.ope_stack);
+			if (stack_operation(lex_state.stack, operator))
+				return 1;
+
+			fprintf(lex_state.output, "%s\n", lex_state.ope_stack->top->ope);
+			pop_ope(lex_state.ope_stack);
+			push_ope(lex_state.ope_stack, ope);
+			last = 0;
+		}
+
+	next_ope:
 		if (expect_operation())
 			return 1;
 
-		fprintf(lex_state.output, "%.3s\n", operator);
-		return stack_operation(lex_state.stack, operator);
-	}
+		if (last) {
+			if (stack_operation(lex_state.stack, operator))
+				return 1;
+			
+			ope = pop_ope(lex_state.ope_stack);
 
+			if (strcmp(ope->ope, ")") == 0) {
+				ope = pop_ope(lex_state.ope_stack);
+				ope = pop_ope(lex_state.ope_stack);
+			}
+
+			fprintf(lex_state.output, "%s\n", ope->ope);
+		}
+
+		return 0;
+	}
 	return 0;
 }
 

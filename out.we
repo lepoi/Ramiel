@@ -1,25 +1,17 @@
-DCLI b
-PUSHKI 0
-POPI b
-DCLI i
-PUSHKI 0
-POPI i
-	fl2c1co:
-PUSH i
-PUSHKI 10
-CLT
-JMPC fl2c1ex
-JMP fl2c1bo
-	fl2c1ca:
-PUSH i
-PUSH i
+DCLD b
+PUSHKD 0.0
+POPD b
+DCLI a
+PUSHKI 2
+PUSHKI 3
+PUSH b
 PUSHKI 1
 ADD
-POPI i
-JMP fl2c1co
-	fl2c1bo:
+POPD b
+PUSH b
+ADD
 PUSHKI 2
-POPI b
-JMP fl2c1ca
-	fl2c1ex:
+DIV
+MUL
+POPI a
 EXT

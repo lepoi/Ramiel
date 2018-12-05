@@ -64,3 +64,55 @@ char stack_operation(struct stack *stack, char *operator) {
 
 	return 0;
 }
+
+struct operator_stack *new_ope_stack() {
+	struct operator_stack *stack = malloc(sizeof(struct operator_stack));
+	stack->top = NULL;
+	stack->count = 0;
+
+	return stack;
+}
+
+struct ope_stack_item *new_ope_stack_item(char *ope) {
+	struct ope_stack_item *item = malloc(sizeof(struct ope_stack_item));
+	item->ope = strdup(ope);
+
+	if (ope[0] == '(')
+		item->prio = 0;
+	else if (ope[0] == ')')
+		item->prio = 0;
+	// Comparisons
+	else if (ope[0] == 'C')
+		item->prio = 4;
+	// Multiplucation, Module
+	else if (ope[0] == 'M')
+		item->prio = 3;
+	else if (strcmp(ope, "DIV") == 0)
+		item->prio = 3;
+	else if (strcmp(ope, "SUM") == 0)
+		item->prio = 2;
+	else if (strcmp(ope, "SUB") == 0)
+		item->prio = 2;
+
+	item->next = NULL;
+
+	return item;
+}
+
+void push_ope(struct operator_stack *stack, struct ope_stack_item *item) {
+	item->next = stack->top;
+	stack->top = item;
+	stack->count++;
+}
+
+struct ope_stack_item *pop_ope(struct operator_stack *stack) 	{
+	if (stack->count == 0)
+		return NULL;
+
+	struct ope_stack_item *item = stack->top;
+	stack->top = stack->top->next;
+	item->next = NULL;
+	stack->count--;
+
+	return item;
+}
