@@ -61,6 +61,10 @@ char consume_token() {
 		case K_PRNT:
 			error = expect_print();
 			break;
+		case K_PRLN:
+			error = expect_print();
+			fprintf(lex_state.output, "WRTLN\n");
+			break;
 		case K_READ:
 			error = expect_read();
 			break;
@@ -347,7 +351,7 @@ char expect_if(ushort line, ushort column) {
 }
 
 char expect_while(ushort line, ushort column) {
-	fprintf(lex_state.output, "\twl%uc%uco:", line, column);
+	fprintf(lex_state.output, "\twl%uc%uco:\n", line, column);
 
 	if (expect(S_LPAR, 1))
 		return 1;
@@ -358,12 +362,12 @@ char expect_while(ushort line, ushort column) {
 	if (expect(S_RPAR, 1))
 		return 1;
 
-	fprintf(lex_state.output, "JMPC wl%uc%uex", line, column);
+	fprintf(lex_state.output, "JMPC wl%uc%uex\n", line, column);
 
 	if (expect(S_LCBR, 0))
 		return 1;
 
-	fprintf(lex_state.output, "\twl%uc%ubo:", line, column);
+	fprintf(lex_state.output, "\twl%uc%ubo:\n", line, column);
 
 	if (expect_body())
 		return 1;
@@ -371,8 +375,8 @@ char expect_while(ushort line, ushort column) {
 	if (expect(S_RCBR, 1))
 		return 1;
 
-	fprintf(lex_state.output, "JMP wl%uc%uco", line, column);
-	fprintf(lex_state.output, "\twl%uc%uex:", line, column);	
+	fprintf(lex_state.output, "JMP wl%uc%uco\n", line, column);
+	fprintf(lex_state.output, "\twl%uc%uex:\n", line, column);	
 
 	return 0;
 }
@@ -459,6 +463,21 @@ char expect_for(ushort line, ushort column) {
 }
 
 char expect_print() {
+	if (expect(S_LPAR, 1))
+		return 1;
+
+	do {
+		if (expect_operation())
+			return 1;
+
+		pop(lex_state.stack);
+		fprintf(lex_state.output, "WRT\n");
+
+	} while (expect(S_CMA, 0));
+
+	if (expect(S_RPAR, 1))
+		return 1;
+
 	return 0;
 }
 
@@ -526,6 +545,10 @@ char consume_body_token() {
 			break;
 		case K_PRNT:
 			error = expect_print();
+			break;
+		case K_PRLN:
+			error = expect_print();
+			fprintf(lex_state.output, "WRTLN\n");
 			break;
 		case K_READ:
 			error = expect_read();
