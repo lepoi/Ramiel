@@ -342,15 +342,15 @@ char expect_asgn(struct ht_item *item) {
 	return 1;
 }
 
-char expect_if(unsigned short line, unsigned short column) {
+char expect_if(ushort line, ushort column) {
 	return 0;
 }
 
-char expect_while(unsigned short line, unsigned short column) {
+char expect_while(ushort line, ushort column) {
 	return 0;
 }
 
-char expect_for(unsigned short line, unsigned short column) {
+char expect_for(ushort line, ushort column) {
 	if (!expect(S_LPAR, 1)) {
 		do {
 			if (!expect_data_type(0)) {
