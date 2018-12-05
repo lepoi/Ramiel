@@ -13,7 +13,7 @@ void \mbox{\hyperlink{hashtable_8c_a65ffab01d9ba4ed0f00b0676ab6993c4}{rm\+\_\+ht
 \item 
 void \mbox{\hyperlink{hashtable_8c_a15b2d33770f6d314465b11c517504a07}{rm\+\_\+ht\+\_\+helper}} (struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}} $\ast$item)
 \item 
-struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}} $\ast$ \mbox{\hyperlink{hashtable_8c_af2b158f51de1a8908bbe90092b4dc702}{new\+\_\+ht\+\_\+item}} (const char $\ast$identifier, size\+\_\+t size, enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}} type)
+struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}} $\ast$ \mbox{\hyperlink{hashtable_8c_a0b761fd4d478319f9aa444f768fd3dc8}{new\+\_\+ht\+\_\+item}} (const char $\ast$identifier, char array, enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}} type)
 \item 
 char \mbox{\hyperlink{hashtable_8c_a77770616b6a3e4ccec6fdbeb02f9c1f2}{rm\+\_\+ht\+\_\+item}} (struct \mbox{\hyperlink{structhashtable}{hashtable}} $\ast$ht, char $\ast$str)
 \item 
@@ -50,11 +50,11 @@ struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}} $\ast$ \mbox{\hyperlink{h
 \subsubsection{\texorpdfstring{new\+\_\+ht()}{new\_ht()}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structhashtable}{hashtable}}$\ast$ new\+\_\+ht (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{s }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{hashtable_8c_af2b158f51de1a8908bbe90092b4dc702}\label{hashtable_8c_af2b158f51de1a8908bbe90092b4dc702}} 
+\mbox{\Hypertarget{hashtable_8c_a0b761fd4d478319f9aa444f768fd3dc8}\label{hashtable_8c_a0b761fd4d478319f9aa444f768fd3dc8}} 
 \index{hashtable.\+c@{hashtable.\+c}!new\+\_\+ht\+\_\+item@{new\+\_\+ht\+\_\+item}}
 \index{new\+\_\+ht\+\_\+item@{new\+\_\+ht\+\_\+item}!hashtable.\+c@{hashtable.\+c}}
 \subsubsection{\texorpdfstring{new\+\_\+ht\+\_\+item()}{new\_ht\_item()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}}$\ast$ new\+\_\+ht\+\_\+item (\begin{DoxyParamCaption}\item[{const char $\ast$}]{identifier,  }\item[{size\+\_\+t}]{size,  }\item[{enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}}}]{type }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structht__item}{ht\+\_\+item}}$\ast$ new\+\_\+ht\+\_\+item (\begin{DoxyParamCaption}\item[{const char $\ast$}]{identifier,  }\item[{char}]{array,  }\item[{enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}}}]{type }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{hashtable_8c_a65ffab01d9ba4ed0f00b0676ab6993c4}\label{hashtable_8c_a65ffab01d9ba4ed0f00b0676ab6993c4}} 
 \index{hashtable.\+c@{hashtable.\+c}!rm\+\_\+ht@{rm\+\_\+ht}}

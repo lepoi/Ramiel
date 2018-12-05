@@ -109,41 +109,42 @@ C:/Users/aleja/Documents/Projects/Ramiel/parser.h\par \pard\plain
 , char required);\par
    12 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABX" }{}}{\fldrslt {\cs37\ul\cf2 expect_data_type}}}
 (char required);\par
-   13 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABY" }{}}{\fldrslt {\cs37\ul\cf2 expect_lit_or_iden}}}
+   13 // char expect_array_lit(enum data_t type, ushort elements, char required);\par
+   14 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABY" }{}}{\fldrslt {\cs37\ul\cf2 expect_lit_or_iden}}}
 (char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABZ" }{}}{\fldrslt {\cs37\ul\cf2 stack}}}
 );\par
-   14 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 expect_lit}}}
+   15 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 expect_lit}}}
 ();\par
-   15 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACB" }{}}{\fldrslt {\cs37\ul\cf2 expect_iden}}}
+   16 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACB" }{}}{\fldrslt {\cs37\ul\cf2 expect_iden}}}
 (char left, char right);\par
-   16 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACC" }{}}{\fldrslt {\cs37\ul\cf2 expect_operator}}}
+   17 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACC" }{}}{\fldrslt {\cs37\ul\cf2 expect_operator}}}
 (char required);\par
-   17 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACD" }{}}{\fldrslt {\cs37\ul\cf2 expect_operation}}}
+   18 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACD" }{}}{\fldrslt {\cs37\ul\cf2 expect_operation}}}
 ();\par
-   18 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACE" }{}}{\fldrslt {\cs37\ul\cf2 expect_decl}}}
+   19 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACE" }{}}{\fldrslt {\cs37\ul\cf2 expect_decl}}}
 (char multiple, enum {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABW" }{}}{\fldrslt {\cs37\ul\cf2 token_type}}}
  {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAJ" }{}}{\fldrslt {\cs37\ul\cf2 type}}}
 );\par
-   19 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACF" }{}}{\fldrslt {\cs37\ul\cf2 expect_asgn}}}
+   20 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACF" }{}}{\fldrslt {\cs37\ul\cf2 expect_asgn}}}
 (struct {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAG" }{}}{\fldrslt {\cs37\ul\cf2 ht_item}}}
  *item);\par
-   20 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACG" }{}}{\fldrslt {\cs37\ul\cf2 expect_if}}}
+   21 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACG" }{}}{\fldrslt {\cs37\ul\cf2 expect_if}}}
 (unsigned short line, unsigned short column);\par
-   21 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACH" }{}}{\fldrslt {\cs37\ul\cf2 expect_while}}}
+   22 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACH" }{}}{\fldrslt {\cs37\ul\cf2 expect_while}}}
 (unsigned short line, unsigned short column);\par
-   22 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACI" }{}}{\fldrslt {\cs37\ul\cf2 expect_for}}}
+   23 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACI" }{}}{\fldrslt {\cs37\ul\cf2 expect_for}}}
 (unsigned short line, unsigned short column);\par
-   23 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACJ" }{}}{\fldrslt {\cs37\ul\cf2 expect_print}}}
+   24 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACJ" }{}}{\fldrslt {\cs37\ul\cf2 expect_print}}}
 ();\par
-   24 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACK" }{}}{\fldrslt {\cs37\ul\cf2 expect_read}}}
+   25 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACK" }{}}{\fldrslt {\cs37\ul\cf2 expect_read}}}
 ();\par
-   25 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACL" }{}}{\fldrslt {\cs37\ul\cf2 expect_body}}}
+   26 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACL" }{}}{\fldrslt {\cs37\ul\cf2 expect_body}}}
 ();\par
-   26 void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACM" }{}}{\fldrslt {\cs37\ul\cf2 skip_body_tokens}}}
+   27 void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACM" }{}}{\fldrslt {\cs37\ul\cf2 skip_body_tokens}}}
 ();\par
-   27 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACN" }{}}{\fldrslt {\cs37\ul\cf2 consume_body_token}}}
+   28 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACN" }{}}{\fldrslt {\cs37\ul\cf2 consume_body_token}}}
 ();\par
-   28 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACO" }{}}{\fldrslt {\cs37\ul\cf2 expect_eoi}}}
+   29 char {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACO" }{}}{\fldrslt {\cs37\ul\cf2 expect_eoi}}}
 ();\par
 }
 }

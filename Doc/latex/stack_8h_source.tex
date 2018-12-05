@@ -3,7 +3,7 @@
 \begin{DoxyCode}
 \Hypertarget{stack_8h_source_l00001}\mbox{\hyperlink{structstack__item}{00001}} \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} \{
 \Hypertarget{stack_8h_source_l00002}\mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{00002}}     \textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{type}};
-\Hypertarget{stack_8h_source_l00003}\mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{00003}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{size}};
+\Hypertarget{stack_8h_source_l00003}\mbox{\hyperlink{structstack__item_a76224348fd73cd6ef63a09ed36b0728b}{00003}}     \textcolor{keywordtype}{char} \mbox{\hyperlink{structstack__item_a76224348fd73cd6ef63a09ed36b0728b}{array}};
 \Hypertarget{stack_8h_source_l00004}\mbox{\hyperlink{structstack__item_a0bd53e44edb84db0a4f76ab6d57b7a18}{00004}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{structstack__item_a0bd53e44edb84db0a4f76ab6d57b7a18}{next}};
 00005 \};
 00006 
@@ -13,8 +13,8 @@
 00010 \};
 00011 
 00012 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{stack_8h_ac2c870499a4235a44219bc97ab8ce921}{new\_stack}}();
-00013 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{stack_8h_a269688cdb9d9d504c2c96e87b88cee87}{new\_stack\_item}}(\textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{type}}, \textcolor{keywordtype}{size\_t} 
-      \mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{size}});
+00013 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{stack_8h_af877a4782e4c1c0465105cd172ad5d04}{new\_stack\_item}}(\textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{type}}, \textcolor{keywordtype}{char} 
+      \mbox{\hyperlink{structstack__item_a76224348fd73cd6ef63a09ed36b0728b}{array}});
 00014 
 00015 \textcolor{keywordtype}{void} \mbox{\hyperlink{stack_8h_a9cae98f023eef9eead38a47d0fffb07d}{push}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{structstack}{stack}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structstack__item}{stack\_item}} *item);
 00016 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{stack_8h_a5a42edbe7096f4ca31143f8ed5f31f66}{pop}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{structstack}{stack}});
