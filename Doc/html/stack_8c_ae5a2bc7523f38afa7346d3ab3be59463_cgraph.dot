@@ -1,0 +1,15 @@
+digraph "stack_operation"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node41 [label="stack_operation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node41 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 [label="pop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stack_8c.html#a5a42edbe7096f4ca31143f8ed5f31f66"];
+  Node41 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node43 [label="error_m",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$console_8c.html#a5525b26bfe0ba2f54d8d891fdaea0d7c"];
+  Node41 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 [label="new_stack_item",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stack_8c.html#a269688cdb9d9d504c2c96e87b88cee87"];
+  Node41 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="push",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stack_8c.html#a9cae98f023eef9eead38a47d0fffb07d"];
+}

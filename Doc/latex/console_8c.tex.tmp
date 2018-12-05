@@ -1,0 +1,87 @@
+\hypertarget{console_8c}{}\section{Referencia del Archivo C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/console.c}
+\label{console_8c}\index{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/console.\+c@{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/console.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Dependencia gráfica adjunta para console.\+c\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{console_8c_a50e3e56248cbda27bd4f9e8c3f65c8ba}{C\+\_\+R}}~\char`\"{}\textbackslash{}e\mbox{[}1;31m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{console_8c_af1c195ae9a5910c14075c521258ac2a1}{C\+\_\+G}}~\char`\"{}\textbackslash{}e\mbox{[}1;32m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{console_8c_a6ae6662438287adbcbd5d2bd68363b58}{C\+\_\+B}}~\char`\"{}\textbackslash{}e\mbox{[}1;34m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{console_8c_a0cb010bde8b2943107405bfad2795d22}{C\+\_\+Y}}~\char`\"{}\textbackslash{}e\mbox{[}1;33m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{console_8c_ac7fb640d9edfaab0df68427c48a4b3c8}{C\+\_\+\+R\+ST}}~\char`\"{}\textbackslash{}e\mbox{[}0m\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{console_8c_a5525b26bfe0ba2f54d8d891fdaea0d7c}{error\+\_\+m}} (char $\ast$message, ushort line, ushort column)
+\item 
+void \mbox{\hyperlink{console_8c_a69a394e08bdcf1cabcbdc6dbc12c79bc}{warning\+\_\+m}} (char $\ast$message, ushort line, ushort column)
+\item 
+void \mbox{\hyperlink{console_8c_a15d885838328d7e6fee7db57b0c89919}{standard\+\_\+m}} (char $\ast$message)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{console_8c_a6ae6662438287adbcbd5d2bd68363b58}\label{console_8c_a6ae6662438287adbcbd5d2bd68363b58}} 
+\index{console.\+c@{console.\+c}!C\+\_\+B@{C\+\_\+B}}
+\index{C\+\_\+B@{C\+\_\+B}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{C\+\_\+B}{C\_B}}
+{\footnotesize\ttfamily \#define C\+\_\+B~\char`\"{}\textbackslash{}e\mbox{[}1;34m\char`\"{}}
+
+\mbox{\Hypertarget{console_8c_af1c195ae9a5910c14075c521258ac2a1}\label{console_8c_af1c195ae9a5910c14075c521258ac2a1}} 
+\index{console.\+c@{console.\+c}!C\+\_\+G@{C\+\_\+G}}
+\index{C\+\_\+G@{C\+\_\+G}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{C\+\_\+G}{C\_G}}
+{\footnotesize\ttfamily \#define C\+\_\+G~\char`\"{}\textbackslash{}e\mbox{[}1;32m\char`\"{}}
+
+\mbox{\Hypertarget{console_8c_a50e3e56248cbda27bd4f9e8c3f65c8ba}\label{console_8c_a50e3e56248cbda27bd4f9e8c3f65c8ba}} 
+\index{console.\+c@{console.\+c}!C\+\_\+R@{C\+\_\+R}}
+\index{C\+\_\+R@{C\+\_\+R}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{C\+\_\+R}{C\_R}}
+{\footnotesize\ttfamily \#define C\+\_\+R~\char`\"{}\textbackslash{}e\mbox{[}1;31m\char`\"{}}
+
+\mbox{\Hypertarget{console_8c_ac7fb640d9edfaab0df68427c48a4b3c8}\label{console_8c_ac7fb640d9edfaab0df68427c48a4b3c8}} 
+\index{console.\+c@{console.\+c}!C\+\_\+\+R\+ST@{C\+\_\+\+R\+ST}}
+\index{C\+\_\+\+R\+ST@{C\+\_\+\+R\+ST}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{C\+\_\+\+R\+ST}{C\_RST}}
+{\footnotesize\ttfamily \#define C\+\_\+\+R\+ST~\char`\"{}\textbackslash{}e\mbox{[}0m\char`\"{}}
+
+\mbox{\Hypertarget{console_8c_a0cb010bde8b2943107405bfad2795d22}\label{console_8c_a0cb010bde8b2943107405bfad2795d22}} 
+\index{console.\+c@{console.\+c}!C\+\_\+Y@{C\+\_\+Y}}
+\index{C\+\_\+Y@{C\+\_\+Y}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{C\+\_\+Y}{C\_Y}}
+{\footnotesize\ttfamily \#define C\+\_\+Y~\char`\"{}\textbackslash{}e\mbox{[}1;33m\char`\"{}}
+
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{console_8c_a5525b26bfe0ba2f54d8d891fdaea0d7c}\label{console_8c_a5525b26bfe0ba2f54d8d891fdaea0d7c}} 
+\index{console.\+c@{console.\+c}!error\+\_\+m@{error\+\_\+m}}
+\index{error\+\_\+m@{error\+\_\+m}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{error\+\_\+m()}{error\_m()}}
+{\footnotesize\ttfamily void error\+\_\+m (\begin{DoxyParamCaption}\item[{char $\ast$}]{message,  }\item[{ushort}]{line,  }\item[{ushort}]{column }\end{DoxyParamCaption})}
+
+Gráfico de llamadas a esta función\+:
+% FIG 2
+\mbox{\Hypertarget{console_8c_a15d885838328d7e6fee7db57b0c89919}\label{console_8c_a15d885838328d7e6fee7db57b0c89919}} 
+\index{console.\+c@{console.\+c}!standard\+\_\+m@{standard\+\_\+m}}
+\index{standard\+\_\+m@{standard\+\_\+m}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{standard\+\_\+m()}{standard\_m()}}
+{\footnotesize\ttfamily void standard\+\_\+m (\begin{DoxyParamCaption}\item[{char $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{console_8c_a69a394e08bdcf1cabcbdc6dbc12c79bc}\label{console_8c_a69a394e08bdcf1cabcbdc6dbc12c79bc}} 
+\index{console.\+c@{console.\+c}!warning\+\_\+m@{warning\+\_\+m}}
+\index{warning\+\_\+m@{warning\+\_\+m}!console.\+c@{console.\+c}}
+\subsubsection{\texorpdfstring{warning\+\_\+m()}{warning\_m()}}
+{\footnotesize\ttfamily void warning\+\_\+m (\begin{DoxyParamCaption}\item[{char $\ast$}]{message,  }\item[{ushort}]{line,  }\item[{ushort}]{column }\end{DoxyParamCaption})}
+
+Gráfico de llamadas a esta función\+:
+% FIG 3

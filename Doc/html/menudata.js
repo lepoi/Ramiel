@@ -22,13 +22,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Related Pages",url:"pages.html"},
-{text:"Data Structures",url:"annotated.html",children:[
-{text:"Data Structures",url:"annotated.html"},
-{text:"Data Structure Index",url:"classes.html"},
-{text:"Data Fields",url:"functions.html",children:[
-{text:"All",url:"functions.html",children:[
+{text:"Página principal",url:"index.html"},
+{text:"Páginas relacionadas",url:"pages.html"},
+{text:"Estructuras de Datos",url:"annotated.html",children:[
+{text:"Estructura de datos",url:"annotated.html"},
+{text:"Índice de estructura de datos",url:"classes.html"},
+{text:"Campos de datos",url:"functions.html",children:[
+{text:"Todo",url:"functions.html",children:[
 {text:"c",url:"functions.html#index_c"},
 {text:"e",url:"functions.html#index_e"},
 {text:"i",url:"functions.html#index_i"},
@@ -50,10 +50,10 @@ var menudata={children:[
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"v",url:"functions_vars.html#index_v"},
 {text:"w",url:"functions_vars.html#index_w"}]}]}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"},
-{text:"Globals",url:"globals.html",children:[
-{text:"All",url:"globals.html",children:[
+{text:"Archivos",url:"files.html",children:[
+{text:"Lista de archivos",url:"files.html"},
+{text:"Globales",url:"globals.html",children:[
+{text:"Todo",url:"globals.html",children:[
 {text:"a",url:"globals.html#index_a"},
 {text:"c",url:"globals.html#index_c"},
 {text:"d",url:"globals.html#index_d"},
@@ -70,7 +70,7 @@ var menudata={children:[
 {text:"s",url:"globals.html#index_s"},
 {text:"t",url:"globals.html#index_t"},
 {text:"w",url:"globals.html#index_w"}]},
-{text:"Functions",url:"globals_func.html",children:[
+{text:"Funciones",url:"globals_func.html",children:[
 {text:"a",url:"globals_func.html#index_a"},
 {text:"c",url:"globals_func.html#index_c"},
 {text:"e",url:"globals_func.html#index_e"},
@@ -83,11 +83,11 @@ var menudata={children:[
 {text:"s",url:"globals_func.html#index_s"},
 {text:"w",url:"globals_func.html#index_w"}]},
 {text:"Variables",url:"globals_vars.html"},
-{text:"Enumerations",url:"globals_enum.html"},
-{text:"Enumerator",url:"globals_eval.html",children:[
+{text:"Enumeraciones",url:"globals_enum.html"},
+{text:"Valores de enumeraciones",url:"globals_eval.html",children:[
 {text:"d",url:"globals_eval.html#index_d"},
 {text:"k",url:"globals_eval.html#index_k"},
 {text:"o",url:"globals_eval.html#index_o"},
 {text:"s",url:"globals_eval.html#index_s"},
 {text:"t",url:"globals_eval.html#index_t"}]},
-{text:"Macros",url:"globals_defs.html"}]}]}]}
+{text:"defines",url:"globals_defs.html"}]}]}]}

@@ -1,0 +1,41 @@
+digraph "parse"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node28 [label="parse",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node28 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="parse_symbol_or_operand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a3bb717287608d3dea3d778274fca12a1"];
+  Node29 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="next_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a1cec8a2aeca74877222503c23559481c"];
+  Node29 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="parse_word_or_number",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a68aeb6bc21ceefa78f024a869fc9c26f"];
+  Node31 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="parse_number",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a4192d1910a1c02fc04bb68c99c5b8520"];
+  Node32 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="append",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8c.html#a8a50a6786aceb9c1f052769a96583000"];
+  Node32 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 [label="return_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a76f73c7046672a685468fd43f4e39f7a"];
+  Node31 -> Node35 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 [label="parse_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#abd11c1c48aff5f5a0d05faaa9f63d35e"];
+  Node35 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="parse_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#acc216fd4b60e32a23b2e4d9db0b2d0cf"];
+  Node36 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 [label="error_m",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$console_8c.html#a5525b26bfe0ba2f54d8d891fdaea0d7c"];
+  Node36 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 [label="parse_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#aeea57bbb18bef3c04e93da5c485b9807"];
+  Node38 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

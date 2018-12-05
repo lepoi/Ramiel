@@ -1,0 +1,20 @@
+digraph "parse_word_or_number"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node89 [label="parse_word_or_number",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node89 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node90 [label="parse_number",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a4192d1910a1c02fc04bb68c99c5b8520"];
+  Node90 -> Node91 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node91 [label="append",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8c.html#a8a50a6786aceb9c1f052769a96583000"];
+  Node90 -> Node92 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node92 [label="next_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a1cec8a2aeca74877222503c23559481c"];
+  Node90 -> Node93 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node93 [label="return_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#a76f73c7046672a685468fd43f4e39f7a"];
+  Node89 -> Node94 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node94 [label="parse_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8c.html#abd11c1c48aff5f5a0d05faaa9f63d35e"];
+  Node94 -> Node91 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node94 -> Node92 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node94 -> Node93 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

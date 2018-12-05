@@ -1,0 +1,23 @@
+\hypertarget{stack_8h_source}{}\section{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/stack.h}
+
+\begin{DoxyCode}
+\Hypertarget{stack_8h_source_l00001}\mbox{\hyperlink{structstack__item}{00001}} \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} \{
+\Hypertarget{stack_8h_source_l00002}\mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{00002}}     \textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{type}};
+\Hypertarget{stack_8h_source_l00003}\mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{00003}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{size}};
+\Hypertarget{stack_8h_source_l00004}\mbox{\hyperlink{structstack__item_a0bd53e44edb84db0a4f76ab6d57b7a18}{00004}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{structstack__item_a0bd53e44edb84db0a4f76ab6d57b7a18}{next}};
+00005 \};
+00006 
+\Hypertarget{stack_8h_source_l00007}\mbox{\hyperlink{structstack}{00007}} \textcolor{keyword}{struct }\mbox{\hyperlink{structstack}{stack}} \{
+\Hypertarget{stack_8h_source_l00008}\mbox{\hyperlink{structstack_abbdb42d3275da0ecf50fcd23a99c7e5b}{00008}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{structstack_abbdb42d3275da0ecf50fcd23a99c7e5b}{top}};
+\Hypertarget{stack_8h_source_l00009}\mbox{\hyperlink{structstack_a76d971a3c552bc58ba9f0d5fceae9806}{00009}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structstack_a76d971a3c552bc58ba9f0d5fceae9806}{count}};
+00010 \};
+00011 
+00012 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{stack_8h_ac2c870499a4235a44219bc97ab8ce921}{new\_stack}}();
+00013 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{stack_8h_a269688cdb9d9d504c2c96e87b88cee87}{new\_stack\_item}}(\textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structstack__item_a0c6169f5c94682132bbbe974784559e6}{type}}, \textcolor{keywordtype}{size\_t} 
+      \mbox{\hyperlink{structstack__item_a854352f53b148adc24983a58a1866d66}{size}});
+00014 
+00015 \textcolor{keywordtype}{void} \mbox{\hyperlink{stack_8h_a9cae98f023eef9eead38a47d0fffb07d}{push}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{structstack}{stack}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structstack__item}{stack\_item}} *item);
+00016 \textcolor{keyword}{struct }\mbox{\hyperlink{structstack__item}{stack\_item}} *\mbox{\hyperlink{stack_8h_a5a42edbe7096f4ca31143f8ed5f31f66}{pop}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{structstack}{stack}});
+00017 
+00018 \textcolor{keywordtype}{char} \mbox{\hyperlink{stack_8h_ae5a2bc7523f38afa7346d3ab3be59463}{stack\_operation}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstack}{stack}} *\mbox{\hyperlink{structstack}{stack}}, \textcolor{keywordtype}{char} *\textcolor{keyword}{operator});
+\end{DoxyCode}

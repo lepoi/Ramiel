@@ -1,0 +1,24 @@
+\hypertarget{lexer_8h_source}{}\section{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/lexer.h}
+
+\begin{DoxyCode}
+00001 \textcolor{preprocessor}{#include <stdlib.h>}
+00002 \textcolor{preprocessor}{#include <stdio.h>}
+00003 \textcolor{preprocessor}{#include <ctype.h>}
+00004 \textcolor{preprocessor}{#include <string.h>}
+00005 \textcolor{preprocessor}{#include "\mbox{\hyperlink{utils_8c}{utils.c}}"}
+00006 \textcolor{preprocessor}{#include "\mbox{\hyperlink{tokens_8c}{tokens.c}}"}
+00007 \textcolor{preprocessor}{#include "\mbox{\hyperlink{state_8c}{state.c}}"}
+00008 \textcolor{preprocessor}{#include "\mbox{\hyperlink{console_8c}{console.c}}"}
+00009 
+00010 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a8db3533be305a7d06f211638b181c759}{make\_tokens}}();
+00011 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a1cec8a2aeca74877222503c23559481c}{next\_char}}();
+00012 \textcolor{keywordtype}{void} \mbox{\hyperlink{lexer_8h_a76f73c7046672a685468fd43f4e39f7a}{return\_char}}(\textcolor{keywordtype}{char} ret);
+00013 \textcolor{keywordtype}{void} \mbox{\hyperlink{lexer_8h_a13171cc94df93641fa41710249bd2828}{skip\_line}}();
+00014 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a78ebaafb96b3d12dfed4531dd6837376}{parse}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info, \textcolor{keywordtype}{char} current);
+00015 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_acc216fd4b60e32a23b2e4d9db0b2d0cf}{parse\_char}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info);
+00016 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_aeea57bbb18bef3c04e93da5c485b9807}{parse\_string}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info);
+00017 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a68aeb6bc21ceefa78f024a869fc9c26f}{parse\_word\_or\_number}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info, \textcolor{keywordtype}{char} first);
+00018 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_abd11c1c48aff5f5a0d05faaa9f63d35e}{parse\_word}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info, \textcolor{keywordtype}{char} first);
+00019 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a3bb717287608d3dea3d778274fca12a1}{parse\_symbol\_or\_operand}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info, \textcolor{keywordtype}{char} *symbol);
+00020 \textcolor{keywordtype}{char} \mbox{\hyperlink{lexer_8h_a4192d1910a1c02fc04bb68c99c5b8520}{parse\_number}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structtoken__info}{token\_info}} *n\_info, \textcolor{keywordtype}{char} first);
+\end{DoxyCode}

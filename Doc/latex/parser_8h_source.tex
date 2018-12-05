@@ -1,0 +1,32 @@
+\hypertarget{parser_8h_source}{}\section{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/parser.h}
+
+\begin{DoxyCode}
+00001 \textcolor{preprocessor}{#include "\mbox{\hyperlink{hashtable_8c}{hashtable.c}}"}
+00002 \textcolor{preprocessor}{#include "\mbox{\hyperlink{stack_8c}{stack.c}}"}
+00003 
+\Hypertarget{parser_8h_source_l00004}\mbox{\hyperlink{parser_8h_a92510da84feeae721d37072fa91b350b}{00004}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{parser_8h_a92510da84feeae721d37072fa91b350b}{iden}};
+\Hypertarget{parser_8h_source_l00005}\mbox{\hyperlink{parser_8h_a85f564232fa9eb864bf2c69e5c4fc124}{00005}} \textcolor{keywordtype}{int} \mbox{\hyperlink{parser_8h_a85f564232fa9eb864bf2c69e5c4fc124}{ope}};
+00006 
+00007 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_ab8e262381abb5c1e8f9f60852381b46b}{analyze}}();
+00008 \textcolor{keywordtype}{void} \mbox{\hyperlink{parser_8h_af0e71bcb4174649d6bbeacd85f541a0c}{rewind\_token}}();
+00009 \textcolor{keywordtype}{void} \mbox{\hyperlink{parser_8h_af28390e9a9a85304112b885d17309ccd}{skip\_tokens}}();
+00010 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_aef9ddda616297a42c549608a2182293a}{consume\_token}}();
+00011 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_af7dc467eed15caf818332c1b225e4d51}{expect}}(\textcolor{keyword}{enum} \mbox{\hyperlink{tokens_8c_afe5ef662303b6b710ea6ee1a944bad0d}{token\_type}} \mbox{\hyperlink{structht__item_a0c6169f5c94682132bbbe974784559e6}{type}}, \textcolor{keywordtype}{char} required);
+00012 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a9ff93d577df1415857dfba2c3959da84}{expect\_data\_type}}(\textcolor{keywordtype}{char} required);
+00013 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a9f0e4ae8bffd096605ec27a3c90ec51e}{expect\_lit\_or\_iden}}(\textcolor{keywordtype}{char} \mbox{\hyperlink{structstack}{stack}});
+00014 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_af9a8c2686d508b84e7ecdc0bef925812}{expect\_lit}}();
+00015 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a2644e22300d855b464dc9b1a74e2ca23}{expect\_iden}}(\textcolor{keywordtype}{char} left, \textcolor{keywordtype}{char} right);
+00016 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_ae105b811c4f03fbab3d1901ca031ce6c}{expect\_operator}}(\textcolor{keywordtype}{char} required);
+00017 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a12397dfec2ce19c111a7ca9e36fb1cab}{expect\_operation}}();
+00018 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a514a249759646ae7388684e263c20637}{expect\_decl}}(\textcolor{keywordtype}{char} multiple, \textcolor{keyword}{enum} \mbox{\hyperlink{tokens_8c_afe5ef662303b6b710ea6ee1a944bad0d}{token\_type}} \mbox{\hyperlink{structht__item_a0c6169f5c94682132bbbe974784559e6}{type}});
+00019 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a877c74213c9cea303f42ec5528bb724e}{expect\_asgn}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structht__item}{ht\_item}} *item);
+00020 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a438c3122a0aa7ad131ea324fb8885353}{expect\_if}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} line, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} column);
+00021 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a2b97e8afaa932d729afc14557408d4c6}{expect\_while}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} line, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} column);
+00022 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a6c4dec3baf883dba3df49cfdc685039d}{expect\_for}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} line, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} column);
+00023 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_afe0a4712a1e02152fbc908b8e8dba58f}{expect\_print}}();
+00024 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_af30692002fab58b336e58921fcb7c24b}{expect\_read}}();
+00025 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a20449c77ec9d4c4255017273d52c688b}{expect\_body}}();
+00026 \textcolor{keywordtype}{void} \mbox{\hyperlink{parser_8h_ab47f8499216a9b7533086809fc853e6b}{skip\_body\_tokens}}();
+00027 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_ada95a16260d002cabfceed8c7956f3ff}{consume\_body\_token}}();
+00028 \textcolor{keywordtype}{char} \mbox{\hyperlink{parser_8h_a6e6ec6e934fb988d91d0d56283379ebb}{expect\_eoi}}();
+\end{DoxyCode}

@@ -1,0 +1,35 @@
+\hypertarget{hashtable_8h_source}{}\section{C\+:/\+Users/aleja/\+Documents/\+Projects/\+Ramiel/hashtable.h}
+
+\begin{DoxyCode}
+\Hypertarget{hashtable_8h_source_l00001}\mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{00001}} \textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \{
+\Hypertarget{hashtable_8h_source_l00002}\mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8ebadf20fd086f01e2210f800cdcd1d418fa}{00002}}     \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8ebad69d65193d78a3137f69e92cc4d7a3f9}{DATA\_CHR}}, \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8ebafe7285c6e78d568533884f6c5f9945a1}{DATA\_INT}}, \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eba8d90344fc52f881c2f7f42ecead3c59f}{DATA\_FLT}}, \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8ebadf20fd086f01e2210f800cdcd1d418fa}{DATA\_STR}}
+00003 \};
+00004     \textcolor{comment}{// DATA\_CHRV, DATA\_INTV, DATA\_FLTV, DATA\_STRV}
+00005 
+\Hypertarget{hashtable_8h_source_l00006}\mbox{\hyperlink{hashtable_8h_ab774c94e0c0e48d8cc354cd54f7a88c2}{00006}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{hashtable_8h_ab774c94e0c0e48d8cc354cd54f7a88c2}{data\_t\_str}} = \textcolor{stringliteral}{"DATA\_CHRDATA\_INTDATA\_FLTDATA\_STR"};
+00007 
+\Hypertarget{hashtable_8h_source_l00008}\mbox{\hyperlink{structht__item}{00008}} \textcolor{keyword}{struct }\mbox{\hyperlink{structht__item}{ht\_item}} \{
+\Hypertarget{hashtable_8h_source_l00009}\mbox{\hyperlink{structht__item_af5351a0143adaf16c64b881aee01d893}{00009}}     \textcolor{keywordtype}{char} *\mbox{\hyperlink{structht__item_af5351a0143adaf16c64b881aee01d893}{identifier}};
+\Hypertarget{hashtable_8h_source_l00010}\mbox{\hyperlink{structht__item_a854352f53b148adc24983a58a1866d66}{00010}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structht__item_a854352f53b148adc24983a58a1866d66}{size}};
+\Hypertarget{hashtable_8h_source_l00011}\mbox{\hyperlink{structht__item_a0c6169f5c94682132bbbe974784559e6}{00011}}     \textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structht__item_a0c6169f5c94682132bbbe974784559e6}{type}};
+\Hypertarget{hashtable_8h_source_l00012}\mbox{\hyperlink{structht__item_a75b19ffcca77bfc647ff02695958fd95}{00012}}     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structht__item_a75b19ffcca77bfc647ff02695958fd95}{next}};
+00013 \};
+00014 
+\Hypertarget{hashtable_8h_source_l00015}\mbox{\hyperlink{structhashtable}{00015}} \textcolor{keyword}{struct }\mbox{\hyperlink{structhashtable}{hashtable}} \{
+\Hypertarget{hashtable_8h_source_l00016}\mbox{\hyperlink{structhashtable_a854352f53b148adc24983a58a1866d66}{00016}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structhashtable_a854352f53b148adc24983a58a1866d66}{size}};
+\Hypertarget{hashtable_8h_source_l00017}\mbox{\hyperlink{structhashtable_a783b4b3f28a47e4200d0cd5522f99009}{00017}}     \textcolor{keywordtype}{char} \mbox{\hyperlink{structhashtable_a783b4b3f28a47e4200d0cd5522f99009}{count}};
+\Hypertarget{hashtable_8h_source_l00018}\mbox{\hyperlink{structhashtable_a8a3d7e001ac614584cad5d1ed7f83881}{00018}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structht__item}{ht\_item}} **\mbox{\hyperlink{structhashtable_a8a3d7e001ac614584cad5d1ed7f83881}{items}};
+00019 \};
+00020 
+00021 \textcolor{keyword}{struct }\mbox{\hyperlink{structhashtable}{hashtable}} *\mbox{\hyperlink{hashtable_8h_a888a206866d455e05391ea83c503bad0}{new\_ht}}(\textcolor{keywordtype}{size\_t} s);
+00022 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashtable_8h_a65ffab01d9ba4ed0f00b0676ab6993c4}{rm\_ht}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structhashtable}{hashtable}} *ht);
+00023 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashtable_8h_a15b2d33770f6d314465b11c517504a07}{rm\_ht\_helper}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structht__item}{ht\_item}} *item);
+00024 
+00025 \textcolor{keyword}{struct }\mbox{\hyperlink{structht__item}{ht\_item}} *\mbox{\hyperlink{hashtable_8h_af2b158f51de1a8908bbe90092b4dc702}{new\_ht\_item}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structht__item_af5351a0143adaf16c64b881aee01d893}{identifier}}, \textcolor{keywordtype}{size\_t} 
+      \mbox{\hyperlink{structht__item_a854352f53b148adc24983a58a1866d66}{size}}, \textcolor{keyword}{enum} \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\_t}} \mbox{\hyperlink{structht__item_a0c6169f5c94682132bbbe974784559e6}{type}});
+00026 \textcolor{keywordtype}{char} \mbox{\hyperlink{hashtable_8h_a77770616b6a3e4ccec6fdbeb02f9c1f2}{rm\_ht\_item}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structhashtable}{hashtable}} *ht, \textcolor{keywordtype}{char} *str);
+00027 
+00028 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{hashtable_8h_a2fa53544d2918e028d920409ac006b33}{hash}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str);
+00029 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashtable_8h_a078eb9eca4ab3c8290ed45166062e2a7}{hash\_item}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structhashtable}{hashtable}} *ht, \textcolor{keyword}{struct} \mbox{\hyperlink{structht__item}{ht\_item}} *item);
+00030 \textcolor{keyword}{struct }\mbox{\hyperlink{structht__item}{ht\_item}} *\mbox{\hyperlink{hashtable_8h_ac6b9890ecaa732008d7fa33212fd87b5}{lookup\_item}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structhashtable}{hashtable}} *ht, \textcolor{keywordtype}{char} *label);
+\end{DoxyCode}

@@ -1,0 +1,13 @@
+digraph "parse_char"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node46 [label="parse_char",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node46 -> Node47 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8h.html#a78ebaafb96b3d12dfed4531dd6837376"];
+  Node47 -> Node48 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node48 [label="make_tokens",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lexer_8h.html#a8db3533be305a7d06f211638b181c759"];
+  Node48 -> Node49 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node49 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ramiel_8c.html#a700a0caa5b70a06d1064e576f9f3cf65"];
+}
