@@ -347,6 +347,33 @@ char expect_if(ushort line, ushort column) {
 }
 
 char expect_while(ushort line, ushort column) {
+	fprintf(lex_state.output, "\twl%uc%uco:", line, column);
+
+	if (expect(S_LPAR, 1))
+		return 1;
+
+	if (expect_operation())
+		return 1;
+
+	if (expect(S_RPAR, 1))
+		return 1;
+
+	fprintf(lex_state.output, "JMPC wl%uc%uex", line, column);
+
+	if (expect(S_LCBR, 0))
+		return 1;
+
+	fprintf(lex_state.output, "\twl%uc%ubo:", line, column);
+
+	if (expect_body())
+		return 1;
+
+	if (expect(S_RCBR, 1))
+		return 1;
+
+	fprintf(lex_state.output, "JMP wl%uc%uco", line, column);
+	fprintf(lex_state.output, "\twl%uc%uex:", line, column);	
+
 	return 0;
 }
 
@@ -368,18 +395,18 @@ char expect_for(ushort line, ushort column) {
 		if (expect(S_SCLN, 1))
 			return 1;
 
-		fprintf(lex_state.output, "\tfor_l%dc%d_condition:\n", line, column);
+		fprintf(lex_state.output, "\tfl%uc%uco:\n", line, column);
 
 		if (expect_operation())
 			return 1;
 
-		fprintf(lex_state.output, "JMPC for_l%dc%d_exit\n", line, column);
-		fprintf(lex_state.output, "JMP for_l%dc%d_body\n", line, column);
+		fprintf(lex_state.output, "JMPC fl%uc%uex\n", line, column);
+		fprintf(lex_state.output, "JMP fl%uc%ubo\n", line, column);
 
 		if (expect(S_SCLN, 1))
 			return 1;
 
-		fprintf(lex_state.output, "\tfor_l%dc%d_callback:\n", line, column);
+		fprintf(lex_state.output, "\tfl%uc%uca:\n", line, column);
 		do {
 			for (int i = 0; i < L_OPERATORS; i++) {
 				if (!expect(l_operators[i], 0)) {
@@ -409,22 +436,22 @@ char expect_for(ushort line, ushort column) {
 		if (expect(S_RPAR, 1))
 			return 1;
 
-		fprintf(lex_state.output, "JMP for_l%dc%d_codition\n", line, column);
+		fprintf(lex_state.output, "JMP fl%uc%uco\n", line, column);
 
 		if (expect(S_LCBR, 1))
 			return 1;
 
-		fprintf(lex_state.output, "\tfor_l%dc%d_body:\n", line, column);
+		fprintf(lex_state.output, "\tfl%uc%ubo:\n", line, column);
 
 		if (expect_body())
 			return 1;
 
-		fprintf(lex_state.output, "JMP for_l%dc%d_callback\n", line, column);
+		fprintf(lex_state.output, "JMP fl%uc%uca\n", line, column);
 
 		if (expect(S_RCBR, 1))
 			return 1;
 
-		fprintf(lex_state.output, "\tfor_l%dc%d_exit:\n", line, column);
+		fprintf(lex_state.output, "\tfl%uc%uex:\n", line, column);
 		printf("Successfully parsed FOR_CYCLE\n");
 		return 0;
 	}

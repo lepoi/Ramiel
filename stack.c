@@ -54,17 +54,7 @@ char stack_operation(struct stack *stack, char *operator) {
 
 	enum data_t type;
 
-	if (strcmp(operator, "CEQ") == 0)
-		type = DATA_INT;
-	else if (strcmp(operator, "CNE") == 0)
-		type = DATA_INT;
-	else if (strcmp(operator, "CGT") == 0)
-		type = DATA_INT;
-	else if (strcmp(operator, "CGE") == 0)
-		type = DATA_INT;
-	else if (strcmp(operator, "CLT") == 0)
-		type = DATA_INT;
-	else if (strcmp(operator, "CLE") == 0)
+	if (operator[0] == 'C')
 		type = DATA_INT;
 	else
 		type = max(item1->type, item2->type);
