@@ -1,6 +1,7 @@
 enum data_t {
 	DATA_CHR, DATA_INT, DATA_FLT, DATA_STR
 };
+	// DATA_CHRV, DATA_INTV, DATA_FLTV, DATA_STRV
 
 char *data_t_str = "DATA_CHRDATA_INTDATA_FLTDATA_STR";
 

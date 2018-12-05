@@ -427,7 +427,7 @@ next_asgn:
 
 		if (s_item->type > item->type) {
 			char *m = malloc(128);
-			sprintf(m, "Assigned %s value to %s variable, may cause unexpected behavior", d_types_mnemonic[s_item->type - T_CHR], d_types_mnemonic[item->type]);
+			sprintf(m, "Assigned %s value to %s variable, may cause unexpected behavior", d_types_mnemonic[s_item->type], d_types_mnemonic[item->type]);
 			warning_m(m, lex_state.current->line, lex_state.current->column);
 		}
 				
@@ -537,18 +537,17 @@ char expect_for(ushort line, ushort column) {
 	if (!expect(S_LPAR, 1)) {
 		do {
 			if (!expect_data_type(0)) {
-				if (expect_decl(0, lex_state.current->tok->type - T_CHR))
+				if (expect_decl(0, lex_state.current->tok->type - 17))
 					return 1;
 			}
 			else if (!expect(T_IDEN, 0)) {
 				if (expect_asgn(lookup_item(lex_state.variables, lex_state.current->tok->content)))
 					return 1;
 			}
-			else
-				break;
+			goto for_next;
 		} while (expect(S_CMA, 0));
 
-
+for_next:
 		if (expect(S_SCLN, 1))
 			return 1;
 

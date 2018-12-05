@@ -6,6 +6,7 @@
 
 # Unignore all with extensions
 !*.*
+*.we
 
 !*/
 .vscode/c_cpp_properties.json

@@ -36,7 +36,6 @@ struct stack_item *pop(struct stack *stack) {
 }
 
 char stack_operation(struct stack *stack, char *operator) {
-
 	struct stack_item *item1 = pop(stack);
 	struct stack_item *item2 = pop(stack);
 

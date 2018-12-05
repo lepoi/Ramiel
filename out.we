@@ -1,51 +1,25 @@
-PUSHKI 100
-DCLVD vector
+DCLI b
+PUSHKI 0
+POPI b
 DCLI i
 PUSHKI 0
 POPI i
-	wl4c1co:
+	fl2c1co:
 PUSH i
-PUSHKI 100
+PUSHKI 10
 CLT
-JMPC wl4c1ex
-PUSH i
-PUSHKI 0
-CEQ
-JMPC il5c2c1
-PUSH i
-PUSH i
-PUSHKI 1
-ADD
-POPVI vector
-	il5c2c1:
-PUSH i
-PUSHKI 0
-CGT
-JMPC il5c2c2
-PUSH i
-PUSHKI 5
-PUSHKI 1
-PUSHKI 3
-MUL
-SUB
-ADD
-PUSHV vector
-WRT
-	il5c2c2:
-JMPC il5c2c3
-RDI
-POPI i
-RDI
-POPI i
-PUSH i
-RDD
-POPD vector
-	il5c2c3:
+JMPC fl2c1ex
+JMP fl2c1bo
+	fl2c1ca:
 PUSH i
 PUSH i
 PUSHKI 1
 ADD
 POPI i
-JMP wl4c1co
-	wl4c1ex:
+JMP fl2c1co
+	fl2c1bo:
+PUSHKI 2
+POPI b
+JMP fl2c1ca
+	fl2c1ex:
 EXT
