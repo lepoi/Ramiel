@@ -273,6 +273,8 @@ char parse_word(struct token_info *n_info, char first) {
 		tok->type = K_FOR;
 	else if (strcmp(word, "print") == 0)
 		tok->type = K_PRNT;
+	else if (strcmp(word, "println") == 0)
+		tok->type = K_PRLN;
 	else if (strcmp(word, "read") == 0)
 		tok->type = K_READ;
 	else if (strcmp(word, "break") == 0)
