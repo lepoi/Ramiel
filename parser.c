@@ -352,7 +352,6 @@ char expect_while(unsigned short line, unsigned short column) {
 
 char expect_for(unsigned short line, unsigned short column) {
 	if (!expect(S_LPAR, 1)) {
-		fprintf(lex_state.output, "\tfor_l%ic%i_1\n", line, column);
 		do {
 			if (!expect_data_type(0)) {
 				if (expect_decl(0, lex_state.current->tok->type - 17))
@@ -369,12 +368,18 @@ char expect_for(unsigned short line, unsigned short column) {
 		if (expect(S_SCLN, 1))
 			return 1;
 
+		fprintf(lex_state.output, "\tfor_l%dc%d_condition:\n", line, column);
+
 		if (expect_operation())
 			return 1;
+
+		fprintf(lex_state.output, "JMPC for_l%dc%d_exit\n", line, column);
+		fprintf(lex_state.output, "JMP for_l%dc%d_body\n", line, column);
 
 		if (expect(S_SCLN, 1))
 			return 1;
 
+		fprintf(lex_state.output, "\tfor_l%dc%d_callback:\n", line, column);
 		do {
 			for (int i = 0; i < L_OPERATORS; i++) {
 				if (!expect(l_operators[i], 0)) {
@@ -399,22 +404,27 @@ char expect_for(unsigned short line, unsigned short column) {
 				rewind_token();
 				expect_operation();
 			}
-
 		} while (!expect(S_CMA, 0));
-
 
 		if (expect(S_RPAR, 1))
 			return 1;
 
+		fprintf(lex_state.output, "JMP for_l%dc%d_codition\n", line, column);
+
 		if (expect(S_LCBR, 1))
 			return 1;
+
+		fprintf(lex_state.output, "\tfor_l%dc%d_body:\n", line, column);
 
 		if (expect_body())
 			return 1;
 
+		fprintf(lex_state.output, "JMP for_l%dc%d_callback\n", line, column);
+
 		if (expect(S_RCBR, 1))
 			return 1;
 
+		fprintf(lex_state.output, "\tfor_l%dc%d_exit:\n", line, column);
 		printf("Successfully parsed FOR_CYCLE\n");
 		return 0;
 	}
@@ -479,13 +489,13 @@ char consume_body_token() {
 			}
 			break;
 		case K_IF:
-			error = expect_if(lex_state.current->line, lex_state.current);
+			error = expect_if(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_WHLE:
-			error = expect_while(lex_state.current->line, lex_state.current);
+			error = expect_while(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_FOR:
-			error = expect_for(lex_state.current->line, lex_state.current);
+			error = expect_for(lex_state.current->line, lex_state.current->column);
 			break;
 		case K_PRNT:
 			error = expect_print();

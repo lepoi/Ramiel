@@ -1,0 +1,500 @@
+\begin{theindex}
+
+  \item {analyze}
+    \subitem {parser.\+c}, \hyperpage{29}
+    \subitem {parser.\+h}, \hyperpage{34}
+  \item {append}
+    \subitem {utils.\+c}, \hyperpage{49}
+  \item {append\+\_\+token}
+    \subitem {state.\+c}, \hyperpage{42}
+  \item {arr\+\_\+len}
+    \subitem {utils.\+c}, \hyperpage{48}
+
+  \indexspace
+
+  \item {C\+\_\+\+R\+ST}
+    \subitem {console.\+c}, \hyperpage{18}
+  \item {C\+\_\+B}
+    \subitem {console.\+c}, \hyperpage{17}
+  \item {C\+\_\+G}
+    \subitem {console.\+c}, \hyperpage{17}
+  \item {C\+\_\+R}
+    \subitem {console.\+c}, \hyperpage{18}
+  \item {C\+\_\+Y}
+    \subitem {console.\+c}, \hyperpage{18}
+  \item {column}
+    \subitem {state}, \hyperpage{11}
+    \subitem {token\+\_\+info}, \hyperpage{14}
+  \item {console.\+c}, \hyperpage{17}
+    \subitem {C\+\_\+\+R\+ST}, \hyperpage{18}
+    \subitem {C\+\_\+B}, \hyperpage{17}
+    \subitem {C\+\_\+G}, \hyperpage{17}
+    \subitem {C\+\_\+R}, \hyperpage{18}
+    \subitem {C\+\_\+Y}, \hyperpage{18}
+    \subitem {error\+\_\+m}, \hyperpage{18}
+    \subitem {standard\+\_\+m}, \hyperpage{18}
+    \subitem {warning\+\_\+m}, \hyperpage{19}
+  \item {consume\+\_\+body\+\_\+token}
+    \subitem {parser.\+c}, \hyperpage{29}
+    \subitem {parser.\+h}, \hyperpage{34}
+  \item {consume\+\_\+token}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{34}
+  \item {content}
+    \subitem {token}, \hyperpage{13}
+  \item {count}
+    \subitem {hashtable}, \hyperpage{7}
+    \subitem {stack}, \hyperpage{9}
+  \item {current}
+    \subitem {state}, \hyperpage{11}
+
+  \indexspace
+
+  \item {D\+\_\+\+T\+Y\+P\+ES}
+    \subitem {tokens.\+c}, \hyperpage{43}
+  \item {d\+\_\+types}
+    \subitem {tokens.\+c}, \hyperpage{46}
+  \item {d\+\_\+types\+\_\+code}
+    \subitem {tokens.\+c}, \hyperpage{46}
+  \item {d\+\_\+types\+\_\+mneumonic}
+    \subitem {tokens.\+c}, \hyperpage{46}
+  \item {data\+\_\+t}
+    \subitem {hashtable.\+h}, \hyperpage{21}
+  \item {data\+\_\+t\+\_\+str}
+    \subitem {hashtable.\+h}, \hyperpage{23}
+
+  \indexspace
+
+  \item {error\+\_\+m}
+    \subitem {console.\+c}, \hyperpage{18}
+  \item {errors}
+    \subitem {state}, \hyperpage{11}
+  \item {expect}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+asgn}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+body}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+data\+\_\+type}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+decl}
+    \subitem {parser.\+c}, \hyperpage{30}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+eoi}
+    \subitem {parser.\+c}, \hyperpage{31}
+    \subitem {parser.\+h}, \hyperpage{35}
+  \item {expect\+\_\+for}
+    \subitem {parser.\+c}, \hyperpage{31}
+    \subitem {parser.\+h}, \hyperpage{36}
+  \item {expect\+\_\+iden}
+    \subitem {parser.\+c}, \hyperpage{31}
+    \subitem {parser.\+h}, \hyperpage{36}
+  \item {expect\+\_\+if}
+    \subitem {parser.\+c}, \hyperpage{31}
+    \subitem {parser.\+h}, \hyperpage{36}
+  \item {expect\+\_\+lit}
+    \subitem {parser.\+c}, \hyperpage{31}
+    \subitem {parser.\+h}, \hyperpage{36}
+  \item {expect\+\_\+lit\+\_\+or\+\_\+iden}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{36}
+  \item {expect\+\_\+operation}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{37}
+  \item {expect\+\_\+operator}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{37}
+  \item {expect\+\_\+print}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{37}
+  \item {expect\+\_\+read}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{37}
+  \item {expect\+\_\+while}
+    \subitem {parser.\+c}, \hyperpage{32}
+    \subitem {parser.\+h}, \hyperpage{37}
+
+  \indexspace
+
+  \item {hash}
+    \subitem {hashtable.\+c}, \hyperpage{19}
+    \subitem {hashtable.\+h}, \hyperpage{22}
+  \item {hash\+\_\+item}
+    \subitem {hashtable.\+c}, \hyperpage{19}
+    \subitem {hashtable.\+h}, \hyperpage{22}
+  \item {hashtable}, \hyperpage{7}
+    \subitem {count}, \hyperpage{7}
+    \subitem {items}, \hyperpage{7}
+    \subitem {size}, \hyperpage{7}
+  \item {hashtable.\+c}, \hyperpage{19}
+    \subitem {hash}, \hyperpage{19}
+    \subitem {hash\+\_\+item}, \hyperpage{19}
+    \subitem {lookup\+\_\+item}, \hyperpage{20}
+    \subitem {new\+\_\+ht}, \hyperpage{20}
+    \subitem {new\+\_\+ht\+\_\+item}, \hyperpage{20}
+    \subitem {rm\+\_\+ht}, \hyperpage{20}
+    \subitem {rm\+\_\+ht\+\_\+helper}, \hyperpage{20}
+    \subitem {rm\+\_\+ht\+\_\+item}, \hyperpage{21}
+  \item {hashtable.\+h}, \hyperpage{21}
+    \subitem {data\+\_\+t}, \hyperpage{21}
+    \subitem {data\+\_\+t\+\_\+str}, \hyperpage{23}
+    \subitem {hash}, \hyperpage{22}
+    \subitem {hash\+\_\+item}, \hyperpage{22}
+    \subitem {lookup\+\_\+item}, \hyperpage{22}
+    \subitem {new\+\_\+ht}, \hyperpage{22}
+    \subitem {new\+\_\+ht\+\_\+item}, \hyperpage{22}
+    \subitem {rm\+\_\+ht}, \hyperpage{23}
+    \subitem {rm\+\_\+ht\+\_\+helper}, \hyperpage{23}
+    \subitem {rm\+\_\+ht\+\_\+item}, \hyperpage{23}
+  \item {ht\+\_\+item}, \hyperpage{8}
+    \subitem {identifier}, \hyperpage{8}
+    \subitem {next}, \hyperpage{8}
+    \subitem {size}, \hyperpage{8}
+    \subitem {type}, \hyperpage{9}
+
+  \indexspace
+
+  \item {iden}
+    \subitem {parser.\+h}, \hyperpage{38}
+  \item {identifier}
+    \subitem {ht\+\_\+item}, \hyperpage{8}
+  \item {input}
+    \subitem {state}, \hyperpage{12}
+  \item {items}
+    \subitem {hashtable}, \hyperpage{7}
+
+  \indexspace
+
+  \item {L\+\_\+\+O\+P\+E\+R\+A\+T\+O\+RS}
+    \subitem {tokens.\+c}, \hyperpage{44}
+  \item {l\+\_\+operator\+\_\+code}
+    \subitem {tokens.\+c}, \hyperpage{46}
+  \item {l\+\_\+operators}
+    \subitem {tokens.\+c}, \hyperpage{47}
+  \item {L\+I\+T\+E\+R\+A\+LS}
+    \subitem {tokens.\+c}, \hyperpage{44}
+  \item {lex\+\_\+state}
+    \subitem {state.\+c}, \hyperpage{42}
+  \item {lexer.\+c}, \hyperpage{24}
+    \subitem {make\+\_\+tokens}, \hyperpage{24}
+    \subitem {next\+\_\+char}, \hyperpage{24}
+    \subitem {parse}, \hyperpage{24}
+    \subitem {parse\+\_\+char}, \hyperpage{24}
+    \subitem {parse\+\_\+number}, \hyperpage{25}
+    \subitem {parse\+\_\+string}, \hyperpage{25}
+    \subitem {parse\+\_\+symbol\+\_\+or\+\_\+operand}, \hyperpage{25}
+    \subitem {parse\+\_\+word}, \hyperpage{25}
+    \subitem {parse\+\_\+word\+\_\+or\+\_\+number}, \hyperpage{25}
+    \subitem {return\+\_\+char}, \hyperpage{26}
+    \subitem {skip\+\_\+line}, \hyperpage{26}
+  \item {lexer.\+h}, \hyperpage{26}
+    \subitem {make\+\_\+tokens}, \hyperpage{27}
+    \subitem {next\+\_\+char}, \hyperpage{27}
+    \subitem {parse}, \hyperpage{27}
+    \subitem {parse\+\_\+char}, \hyperpage{27}
+    \subitem {parse\+\_\+number}, \hyperpage{27}
+    \subitem {parse\+\_\+string}, \hyperpage{27}
+    \subitem {parse\+\_\+symbol\+\_\+or\+\_\+operand}, \hyperpage{28}
+    \subitem {parse\+\_\+word}, \hyperpage{28}
+    \subitem {parse\+\_\+word\+\_\+or\+\_\+number}, \hyperpage{28}
+    \subitem {return\+\_\+char}, \hyperpage{28}
+    \subitem {skip\+\_\+line}, \hyperpage{28}
+  \item {line}
+    \subitem {state}, \hyperpage{12}
+    \subitem {token\+\_\+info}, \hyperpage{14}
+  \item {list}
+    \subitem {state}, \hyperpage{12}
+  \item {literals}
+    \subitem {tokens.\+c}, \hyperpage{47}
+  \item {lookup\+\_\+item}
+    \subitem {hashtable.\+c}, \hyperpage{20}
+    \subitem {hashtable.\+h}, \hyperpage{22}
+
+  \indexspace
+
+  \item {main}
+    \subitem {ramiel.\+c}, \hyperpage{39}
+  \item {make\+\_\+tokens}
+    \subitem {lexer.\+c}, \hyperpage{24}
+    \subitem {lexer.\+h}, \hyperpage{27}
+  \item {max}
+    \subitem {utils.\+c}, \hyperpage{49}
+
+  \indexspace
+
+  \item {negative}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {new\+\_\+ht}
+    \subitem {hashtable.\+c}, \hyperpage{20}
+    \subitem {hashtable.\+h}, \hyperpage{22}
+  \item {new\+\_\+ht\+\_\+item}
+    \subitem {hashtable.\+c}, \hyperpage{20}
+    \subitem {hashtable.\+h}, \hyperpage{22}
+  \item {new\+\_\+stack}
+    \subitem {stack.\+c}, \hyperpage{39}
+    \subitem {stack.\+h}, \hyperpage{41}
+  \item {new\+\_\+stack\+\_\+item}
+    \subitem {stack.\+c}, \hyperpage{39}
+    \subitem {stack.\+h}, \hyperpage{41}
+  \item {new\+\_\+token\+\_\+info}
+    \subitem {tokens.\+c}, \hyperpage{46}
+  \item {next}
+    \subitem {ht\+\_\+item}, \hyperpage{8}
+    \subitem {stack\+\_\+item}, \hyperpage{10}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {next\+\_\+char}
+    \subitem {lexer.\+c}, \hyperpage{24}
+    \subitem {lexer.\+h}, \hyperpage{27}
+
+  \indexspace
+
+  \item {O\+P\+E\+R\+A\+T\+O\+RS}
+    \subitem {tokens.\+c}, \hyperpage{44}
+  \item {ope}
+    \subitem {parser.\+h}, \hyperpage{38}
+  \item {operator\+\_\+code}
+    \subitem {tokens.\+c}, \hyperpage{47}
+  \item {operators}
+    \subitem {tokens.\+c}, \hyperpage{47}
+  \item {output}
+    \subitem {state}, \hyperpage{12}
+
+  \indexspace
+
+  \item {parse}
+    \subitem {lexer.\+c}, \hyperpage{24}
+    \subitem {lexer.\+h}, \hyperpage{27}
+  \item {parse\+\_\+char}
+    \subitem {lexer.\+c}, \hyperpage{24}
+    \subitem {lexer.\+h}, \hyperpage{27}
+  \item {parse\+\_\+number}
+    \subitem {lexer.\+c}, \hyperpage{25}
+    \subitem {lexer.\+h}, \hyperpage{27}
+  \item {parse\+\_\+string}
+    \subitem {lexer.\+c}, \hyperpage{25}
+    \subitem {lexer.\+h}, \hyperpage{27}
+  \item {parse\+\_\+symbol\+\_\+or\+\_\+operand}
+    \subitem {lexer.\+c}, \hyperpage{25}
+    \subitem {lexer.\+h}, \hyperpage{28}
+  \item {parse\+\_\+word}
+    \subitem {lexer.\+c}, \hyperpage{25}
+    \subitem {lexer.\+h}, \hyperpage{28}
+  \item {parse\+\_\+word\+\_\+or\+\_\+number}
+    \subitem {lexer.\+c}, \hyperpage{25}
+    \subitem {lexer.\+h}, \hyperpage{28}
+  \item {parser.\+c}, \hyperpage{29}
+    \subitem {analyze}, \hyperpage{29}
+    \subitem {consume\+\_\+body\+\_\+token}, \hyperpage{29}
+    \subitem {consume\+\_\+token}, \hyperpage{30}
+    \subitem {expect}, \hyperpage{30}
+    \subitem {expect\+\_\+asgn}, \hyperpage{30}
+    \subitem {expect\+\_\+body}, \hyperpage{30}
+    \subitem {expect\+\_\+data\+\_\+type}, \hyperpage{30}
+    \subitem {expect\+\_\+decl}, \hyperpage{30}
+    \subitem {expect\+\_\+eoi}, \hyperpage{31}
+    \subitem {expect\+\_\+for}, \hyperpage{31}
+    \subitem {expect\+\_\+iden}, \hyperpage{31}
+    \subitem {expect\+\_\+if}, \hyperpage{31}
+    \subitem {expect\+\_\+lit}, \hyperpage{31}
+    \subitem {expect\+\_\+lit\+\_\+or\+\_\+iden}, \hyperpage{32}
+    \subitem {expect\+\_\+operation}, \hyperpage{32}
+    \subitem {expect\+\_\+operator}, \hyperpage{32}
+    \subitem {expect\+\_\+print}, \hyperpage{32}
+    \subitem {expect\+\_\+read}, \hyperpage{32}
+    \subitem {expect\+\_\+while}, \hyperpage{32}
+    \subitem {rewind\+\_\+token}, \hyperpage{33}
+    \subitem {skip\+\_\+body\+\_\+tokens}, \hyperpage{33}
+    \subitem {skip\+\_\+tokens}, \hyperpage{33}
+  \item {parser.\+h}, \hyperpage{33}
+    \subitem {analyze}, \hyperpage{34}
+    \subitem {consume\+\_\+body\+\_\+token}, \hyperpage{34}
+    \subitem {consume\+\_\+token}, \hyperpage{34}
+    \subitem {expect}, \hyperpage{35}
+    \subitem {expect\+\_\+asgn}, \hyperpage{35}
+    \subitem {expect\+\_\+body}, \hyperpage{35}
+    \subitem {expect\+\_\+data\+\_\+type}, \hyperpage{35}
+    \subitem {expect\+\_\+decl}, \hyperpage{35}
+    \subitem {expect\+\_\+eoi}, \hyperpage{35}
+    \subitem {expect\+\_\+for}, \hyperpage{36}
+    \subitem {expect\+\_\+iden}, \hyperpage{36}
+    \subitem {expect\+\_\+if}, \hyperpage{36}
+    \subitem {expect\+\_\+lit}, \hyperpage{36}
+    \subitem {expect\+\_\+lit\+\_\+or\+\_\+iden}, \hyperpage{36}
+    \subitem {expect\+\_\+operation}, \hyperpage{37}
+    \subitem {expect\+\_\+operator}, \hyperpage{37}
+    \subitem {expect\+\_\+print}, \hyperpage{37}
+    \subitem {expect\+\_\+read}, \hyperpage{37}
+    \subitem {expect\+\_\+while}, \hyperpage{37}
+    \subitem {iden}, \hyperpage{38}
+    \subitem {ope}, \hyperpage{38}
+    \subitem {rewind\+\_\+token}, \hyperpage{37}
+    \subitem {skip\+\_\+body\+\_\+tokens}, \hyperpage{38}
+    \subitem {skip\+\_\+tokens}, \hyperpage{38}
+  \item {pop}
+    \subitem {stack.\+c}, \hyperpage{40}
+    \subitem {stack.\+h}, \hyperpage{41}
+  \item {push}
+    \subitem {stack.\+c}, \hyperpage{40}
+    \subitem {stack.\+h}, \hyperpage{41}
+
+  \indexspace
+
+  \item {R\+\_\+\+O\+P\+E\+R\+A\+T\+O\+RS}
+    \subitem {tokens.\+c}, \hyperpage{44}
+  \item {r\+\_\+operator\+\_\+code}
+    \subitem {tokens.\+c}, \hyperpage{47}
+  \item {r\+\_\+operators}
+    \subitem {tokens.\+c}, \hyperpage{48}
+  \item {R\+E\+A\+D\+M\+E.\+md}, \hyperpage{39}
+  \item {ramiel.\+c}, \hyperpage{38}
+    \subitem {main}, \hyperpage{39}
+  \item {return\+\_\+char}
+    \subitem {lexer.\+c}, \hyperpage{26}
+    \subitem {lexer.\+h}, \hyperpage{28}
+  \item {rewind\+\_\+token}
+    \subitem {parser.\+c}, \hyperpage{33}
+    \subitem {parser.\+h}, \hyperpage{37}
+  \item {rm\+\_\+ht}
+    \subitem {hashtable.\+c}, \hyperpage{20}
+    \subitem {hashtable.\+h}, \hyperpage{23}
+  \item {rm\+\_\+ht\+\_\+helper}
+    \subitem {hashtable.\+c}, \hyperpage{20}
+    \subitem {hashtable.\+h}, \hyperpage{23}
+  \item {rm\+\_\+ht\+\_\+item}
+    \subitem {hashtable.\+c}, \hyperpage{21}
+    \subitem {hashtable.\+h}, \hyperpage{23}
+
+  \indexspace
+
+  \item {size}
+    \subitem {hashtable}, \hyperpage{7}
+    \subitem {ht\+\_\+item}, \hyperpage{8}
+    \subitem {stack\+\_\+item}, \hyperpage{10}
+  \item {skip\+\_\+body\+\_\+tokens}
+    \subitem {parser.\+c}, \hyperpage{33}
+    \subitem {parser.\+h}, \hyperpage{38}
+  \item {skip\+\_\+line}
+    \subitem {lexer.\+c}, \hyperpage{26}
+    \subitem {lexer.\+h}, \hyperpage{28}
+  \item {skip\+\_\+tokens}
+    \subitem {parser.\+c}, \hyperpage{33}
+    \subitem {parser.\+h}, \hyperpage{38}
+  \item {stack}, \hyperpage{9}
+    \subitem {count}, \hyperpage{9}
+    \subitem {state}, \hyperpage{12}
+    \subitem {top}, \hyperpage{9}
+  \item {stack.\+c}, \hyperpage{39}
+    \subitem {new\+\_\+stack}, \hyperpage{39}
+    \subitem {new\+\_\+stack\+\_\+item}, \hyperpage{39}
+    \subitem {pop}, \hyperpage{40}
+    \subitem {push}, \hyperpage{40}
+    \subitem {stack\+\_\+operation}, \hyperpage{40}
+  \item {stack.\+h}, \hyperpage{40}
+    \subitem {new\+\_\+stack}, \hyperpage{41}
+    \subitem {new\+\_\+stack\+\_\+item}, \hyperpage{41}
+    \subitem {pop}, \hyperpage{41}
+    \subitem {push}, \hyperpage{41}
+    \subitem {stack\+\_\+operation}, \hyperpage{41}
+  \item {stack\+\_\+item}, \hyperpage{10}
+    \subitem {next}, \hyperpage{10}
+    \subitem {size}, \hyperpage{10}
+    \subitem {type}, \hyperpage{10}
+  \item {stack\+\_\+operation}
+    \subitem {stack.\+c}, \hyperpage{40}
+    \subitem {stack.\+h}, \hyperpage{41}
+  \item {standard\+\_\+m}
+    \subitem {console.\+c}, \hyperpage{18}
+  \item {state}, \hyperpage{11}
+    \subitem {column}, \hyperpage{11}
+    \subitem {current}, \hyperpage{11}
+    \subitem {errors}, \hyperpage{11}
+    \subitem {input}, \hyperpage{12}
+    \subitem {line}, \hyperpage{12}
+    \subitem {list}, \hyperpage{12}
+    \subitem {output}, \hyperpage{12}
+    \subitem {stack}, \hyperpage{12}
+    \subitem {variables}, \hyperpage{12}
+    \subitem {warnings}, \hyperpage{13}
+  \item {state.\+c}, \hyperpage{42}
+    \subitem {append\+\_\+token}, \hyperpage{42}
+    \subitem {lex\+\_\+state}, \hyperpage{42}
+
+  \indexspace
+
+  \item {tok}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {token}, \hyperpage{13}
+    \subitem {content}, \hyperpage{13}
+    \subitem {type}, \hyperpage{13}
+  \item {token\+\_\+info}, \hyperpage{14}
+    \subitem {column}, \hyperpage{14}
+    \subitem {line}, \hyperpage{14}
+    \subitem {negative}, \hyperpage{15}
+    \subitem {next}, \hyperpage{15}
+    \subitem {tok}, \hyperpage{15}
+    \subitem {val\+\_\+c}, \hyperpage{15}
+    \subitem {val\+\_\+d}, \hyperpage{15}
+    \subitem {val\+\_\+i}, \hyperpage{15}
+    \subitem {val\+\_\+s}, \hyperpage{15}
+  \item {token\+\_\+names}
+    \subitem {tokens.\+c}, \hyperpage{48}
+  \item {token\+\_\+type}
+    \subitem {tokens.\+c}, \hyperpage{44}
+  \item {tokens.\+c}, \hyperpage{42}
+    \subitem {D\+\_\+\+T\+Y\+P\+ES}, \hyperpage{43}
+    \subitem {d\+\_\+types}, \hyperpage{46}
+    \subitem {d\+\_\+types\+\_\+code}, \hyperpage{46}
+    \subitem {d\+\_\+types\+\_\+mneumonic}, \hyperpage{46}
+    \subitem {L\+\_\+\+O\+P\+E\+R\+A\+T\+O\+RS}, \hyperpage{44}
+    \subitem {l\+\_\+operator\+\_\+code}, \hyperpage{46}
+    \subitem {l\+\_\+operators}, \hyperpage{47}
+    \subitem {L\+I\+T\+E\+R\+A\+LS}, \hyperpage{44}
+    \subitem {literals}, \hyperpage{47}
+    \subitem {new\+\_\+token\+\_\+info}, \hyperpage{46}
+    \subitem {O\+P\+E\+R\+A\+T\+O\+RS}, \hyperpage{44}
+    \subitem {operator\+\_\+code}, \hyperpage{47}
+    \subitem {operators}, \hyperpage{47}
+    \subitem {R\+\_\+\+O\+P\+E\+R\+A\+T\+O\+RS}, \hyperpage{44}
+    \subitem {r\+\_\+operator\+\_\+code}, \hyperpage{47}
+    \subitem {r\+\_\+operators}, \hyperpage{48}
+    \subitem {token\+\_\+names}, \hyperpage{48}
+    \subitem {token\+\_\+type}, \hyperpage{44}
+  \item {top}
+    \subitem {stack}, \hyperpage{9}
+  \item {type}
+    \subitem {ht\+\_\+item}, \hyperpage{9}
+    \subitem {stack\+\_\+item}, \hyperpage{10}
+    \subitem {token}, \hyperpage{13}
+
+  \indexspace
+
+  \item {utils.\+c}, \hyperpage{48}
+    \subitem {append}, \hyperpage{49}
+    \subitem {arr\+\_\+len}, \hyperpage{48}
+    \subitem {max}, \hyperpage{49}
+
+  \indexspace
+
+  \item {val\+\_\+c}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {val\+\_\+d}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {val\+\_\+i}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {val\+\_\+s}
+    \subitem {token\+\_\+info}, \hyperpage{15}
+  \item {variables}
+    \subitem {state}, \hyperpage{12}
+
+  \indexspace
+
+  \item {warning\+\_\+m}
+    \subitem {console.\+c}, \hyperpage{19}
+  \item {warnings}
+    \subitem {state}, \hyperpage{13}
+
+\end{theindex}

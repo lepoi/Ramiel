@@ -1,26 +1,22 @@
 DCLI i
 DCLI j
-	for_l3c1_1
 PUSHKI 0
 POPI i
+	for_l3c1_condition:
 PUSH i
 PUSHKI 10
 CLT
+JMPC for_l3c1_exit
+JMP for_l3c1_body
+	for_l3c1_callback:
 PUSH i
 PUSH i
 PUSHKI 1
 ADD
 POPI i
-	for_l4c12752_1
-PUSHKI 0
-POPI j
-PUSH j
-PUSHKI 10
-CLT
-PUSH j
-PUSH j
-PUSHKI 1
-ADD
-POPI j
+JMP for_l3c1_codition
+	for_l3c1_body:
 PUSH i
 POPI j
+JMP for_l3c1_callback
+	for_l3c1_exit:
