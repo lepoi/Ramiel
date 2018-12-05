@@ -1,0 +1,148 @@
+\hypertarget{lexer_8h}{}\section{lexer.\+h File Reference}
+\label{lexer_8h}\index{lexer.\+h@{lexer.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utils.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tokens.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}state.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+c\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{lexer_8h_a8db3533be305a7d06f211638b181c759}{make\+\_\+tokens}} ()
+\item 
+char \mbox{\hyperlink{lexer_8h_a1cec8a2aeca74877222503c23559481c}{next\+\_\+char}} ()
+\item 
+void \mbox{\hyperlink{lexer_8h_a76f73c7046672a685468fd43f4e39f7a}{return\+\_\+char}} (char ret)
+\item 
+void \mbox{\hyperlink{lexer_8h_a13171cc94df93641fa41710249bd2828}{skip\+\_\+line}} ()
+\item 
+char \mbox{\hyperlink{lexer_8h_a78ebaafb96b3d12dfed4531dd6837376}{parse}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info, char current)
+\item 
+char \mbox{\hyperlink{lexer_8h_acc216fd4b60e32a23b2e4d9db0b2d0cf}{parse\+\_\+char}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info)
+\item 
+char \mbox{\hyperlink{lexer_8h_aeea57bbb18bef3c04e93da5c485b9807}{parse\+\_\+string}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info)
+\item 
+char \mbox{\hyperlink{lexer_8h_a68aeb6bc21ceefa78f024a869fc9c26f}{parse\+\_\+word\+\_\+or\+\_\+number}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info, char first)
+\item 
+char \mbox{\hyperlink{lexer_8h_abd11c1c48aff5f5a0d05faaa9f63d35e}{parse\+\_\+word}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info, char first)
+\item 
+char \mbox{\hyperlink{lexer_8h_a3bb717287608d3dea3d778274fca12a1}{parse\+\_\+symbol\+\_\+or\+\_\+operand}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info, char $\ast$symbol)
+\item 
+char \mbox{\hyperlink{lexer_8h_a4192d1910a1c02fc04bb68c99c5b8520}{parse\+\_\+number}} (struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$n\+\_\+info, char first)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lexer_8h_a8db3533be305a7d06f211638b181c759}\label{lexer_8h_a8db3533be305a7d06f211638b181c759}} 
+\index{lexer.\+h@{lexer.\+h}!make\+\_\+tokens@{make\+\_\+tokens}}
+\index{make\+\_\+tokens@{make\+\_\+tokens}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{make\+\_\+tokens()}{make\_tokens()}}
+{\footnotesize\ttfamily char make\+\_\+tokens (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a1cec8a2aeca74877222503c23559481c}\label{lexer_8h_a1cec8a2aeca74877222503c23559481c}} 
+\index{lexer.\+h@{lexer.\+h}!next\+\_\+char@{next\+\_\+char}}
+\index{next\+\_\+char@{next\+\_\+char}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{next\+\_\+char()}{next\_char()}}
+{\footnotesize\ttfamily char next\+\_\+char (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a78ebaafb96b3d12dfed4531dd6837376}\label{lexer_8h_a78ebaafb96b3d12dfed4531dd6837376}} 
+\index{lexer.\+h@{lexer.\+h}!parse@{parse}}
+\index{parse@{parse}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily char parse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info,  }\item[{char}]{current }\end{DoxyParamCaption})}
+
+
+
+Definition at line 64 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_acc216fd4b60e32a23b2e4d9db0b2d0cf}\label{lexer_8h_acc216fd4b60e32a23b2e4d9db0b2d0cf}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+char@{parse\+\_\+char}}
+\index{parse\+\_\+char@{parse\+\_\+char}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+char()}{parse\_char()}}
+{\footnotesize\ttfamily char parse\+\_\+char (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Definition at line 190 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a4192d1910a1c02fc04bb68c99c5b8520}\label{lexer_8h_a4192d1910a1c02fc04bb68c99c5b8520}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+number@{parse\+\_\+number}}
+\index{parse\+\_\+number@{parse\+\_\+number}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+number()}{parse\_number()}}
+{\footnotesize\ttfamily char parse\+\_\+number (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info,  }\item[{char}]{first }\end{DoxyParamCaption})}
+
+
+
+Definition at line 290 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_aeea57bbb18bef3c04e93da5c485b9807}\label{lexer_8h_aeea57bbb18bef3c04e93da5c485b9807}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+string@{parse\+\_\+string}}
+\index{parse\+\_\+string@{parse\+\_\+string}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+string()}{parse\_string()}}
+{\footnotesize\ttfamily char parse\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Definition at line 211 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a3bb717287608d3dea3d778274fca12a1}\label{lexer_8h_a3bb717287608d3dea3d778274fca12a1}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+symbol\+\_\+or\+\_\+operand@{parse\+\_\+symbol\+\_\+or\+\_\+operand}}
+\index{parse\+\_\+symbol\+\_\+or\+\_\+operand@{parse\+\_\+symbol\+\_\+or\+\_\+operand}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+symbol\+\_\+or\+\_\+operand()}{parse\_symbol\_or\_operand()}}
+{\footnotesize\ttfamily char parse\+\_\+symbol\+\_\+or\+\_\+operand (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info,  }\item[{char $\ast$}]{symbol }\end{DoxyParamCaption})}
+
+
+
+Definition at line 326 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_abd11c1c48aff5f5a0d05faaa9f63d35e}\label{lexer_8h_abd11c1c48aff5f5a0d05faaa9f63d35e}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+word@{parse\+\_\+word}}
+\index{parse\+\_\+word@{parse\+\_\+word}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+word()}{parse\_word()}}
+{\footnotesize\ttfamily char parse\+\_\+word (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info,  }\item[{char}]{first }\end{DoxyParamCaption})}
+
+
+
+Definition at line 243 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a68aeb6bc21ceefa78f024a869fc9c26f}\label{lexer_8h_a68aeb6bc21ceefa78f024a869fc9c26f}} 
+\index{lexer.\+h@{lexer.\+h}!parse\+\_\+word\+\_\+or\+\_\+number@{parse\+\_\+word\+\_\+or\+\_\+number}}
+\index{parse\+\_\+word\+\_\+or\+\_\+number@{parse\+\_\+word\+\_\+or\+\_\+number}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{parse\+\_\+word\+\_\+or\+\_\+number()}{parse\_word\_or\_number()}}
+{\footnotesize\ttfamily char parse\+\_\+word\+\_\+or\+\_\+number (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoken__info}{token\+\_\+info}} $\ast$}]{n\+\_\+info,  }\item[{char}]{first }\end{DoxyParamCaption})}
+
+
+
+Definition at line 234 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a76f73c7046672a685468fd43f4e39f7a}\label{lexer_8h_a76f73c7046672a685468fd43f4e39f7a}} 
+\index{lexer.\+h@{lexer.\+h}!return\+\_\+char@{return\+\_\+char}}
+\index{return\+\_\+char@{return\+\_\+char}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{return\+\_\+char()}{return\_char()}}
+{\footnotesize\ttfamily void return\+\_\+char (\begin{DoxyParamCaption}\item[{char}]{ret }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file lexer.\+c.
+
+\mbox{\Hypertarget{lexer_8h_a13171cc94df93641fa41710249bd2828}\label{lexer_8h_a13171cc94df93641fa41710249bd2828}} 
+\index{lexer.\+h@{lexer.\+h}!skip\+\_\+line@{skip\+\_\+line}}
+\index{skip\+\_\+line@{skip\+\_\+line}!lexer.\+h@{lexer.\+h}}
+\subsubsection{\texorpdfstring{skip\+\_\+line()}{skip\_line()}}
+{\footnotesize\ttfamily void skip\+\_\+line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file lexer.\+c.
+

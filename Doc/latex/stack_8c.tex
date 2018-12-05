@@ -1,0 +1,69 @@
+\hypertarget{stack_8c}{}\section{stack.\+c File Reference}
+\label{stack_8c}\index{stack.\+c@{stack.\+c}}
+{\ttfamily \#include \char`\"{}stack.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstack}{stack}} $\ast$ \mbox{\hyperlink{stack_8c_ac2c870499a4235a44219bc97ab8ce921}{new\+\_\+stack}} ()
+\item 
+struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}} $\ast$ \mbox{\hyperlink{stack_8c_a269688cdb9d9d504c2c96e87b88cee87}{new\+\_\+stack\+\_\+item}} (enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}} type, size\+\_\+t size)
+\item 
+void \mbox{\hyperlink{stack_8c_a9cae98f023eef9eead38a47d0fffb07d}{push}} (struct \mbox{\hyperlink{structstack}{stack}} $\ast$\mbox{\hyperlink{structstack}{stack}}, struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}} $\ast$item)
+\item 
+struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}} $\ast$ \mbox{\hyperlink{stack_8c_a5a42edbe7096f4ca31143f8ed5f31f66}{pop}} (struct \mbox{\hyperlink{structstack}{stack}} $\ast$\mbox{\hyperlink{structstack}{stack}})
+\item 
+char \mbox{\hyperlink{stack_8c_ae5a2bc7523f38afa7346d3ab3be59463}{stack\+\_\+operation}} (struct \mbox{\hyperlink{structstack}{stack}} $\ast$\mbox{\hyperlink{structstack}{stack}}, char $\ast$operator)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{stack_8c_ac2c870499a4235a44219bc97ab8ce921}\label{stack_8c_ac2c870499a4235a44219bc97ab8ce921}} 
+\index{stack.\+c@{stack.\+c}!new\+\_\+stack@{new\+\_\+stack}}
+\index{new\+\_\+stack@{new\+\_\+stack}!stack.\+c@{stack.\+c}}
+\subsubsection{\texorpdfstring{new\+\_\+stack()}{new\_stack()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structstack}{stack}}$\ast$ new\+\_\+stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file stack.\+c.
+
+\mbox{\Hypertarget{stack_8c_a269688cdb9d9d504c2c96e87b88cee87}\label{stack_8c_a269688cdb9d9d504c2c96e87b88cee87}} 
+\index{stack.\+c@{stack.\+c}!new\+\_\+stack\+\_\+item@{new\+\_\+stack\+\_\+item}}
+\index{new\+\_\+stack\+\_\+item@{new\+\_\+stack\+\_\+item}!stack.\+c@{stack.\+c}}
+\subsubsection{\texorpdfstring{new\+\_\+stack\+\_\+item()}{new\_stack\_item()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}}$\ast$ new\+\_\+stack\+\_\+item (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{hashtable_8h_adb5f3584b941a8dc0fed6b7302b4b8eb}{data\+\_\+t}}}]{type,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 11 of file stack.\+c.
+
+\mbox{\Hypertarget{stack_8c_a5a42edbe7096f4ca31143f8ed5f31f66}\label{stack_8c_a5a42edbe7096f4ca31143f8ed5f31f66}} 
+\index{stack.\+c@{stack.\+c}!pop@{pop}}
+\index{pop@{pop}!stack.\+c@{stack.\+c}}
+\subsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}}$\ast$ pop (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstack}{stack}} $\ast$}]{stack }\end{DoxyParamCaption})}
+
+
+
+Definition at line 26 of file stack.\+c.
+
+\mbox{\Hypertarget{stack_8c_a9cae98f023eef9eead38a47d0fffb07d}\label{stack_8c_a9cae98f023eef9eead38a47d0fffb07d}} 
+\index{stack.\+c@{stack.\+c}!push@{push}}
+\index{push@{push}!stack.\+c@{stack.\+c}}
+\subsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily void push (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstack}{stack}} $\ast$}]{stack,  }\item[{struct \mbox{\hyperlink{structstack__item}{stack\+\_\+item}} $\ast$}]{item }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file stack.\+c.
+
+\mbox{\Hypertarget{stack_8c_ae5a2bc7523f38afa7346d3ab3be59463}\label{stack_8c_ae5a2bc7523f38afa7346d3ab3be59463}} 
+\index{stack.\+c@{stack.\+c}!stack\+\_\+operation@{stack\+\_\+operation}}
+\index{stack\+\_\+operation@{stack\+\_\+operation}!stack.\+c@{stack.\+c}}
+\subsubsection{\texorpdfstring{stack\+\_\+operation()}{stack\_operation()}}
+{\footnotesize\ttfamily char stack\+\_\+operation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstack}{stack}} $\ast$}]{stack,  }\item[{char $\ast$}]{operator }\end{DoxyParamCaption})}
+
+
+
+Definition at line 38 of file stack.\+c.
+
