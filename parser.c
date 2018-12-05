@@ -258,6 +258,7 @@ char expect_operation() {
 
 char expect_decl(char multiple, enum token_type type) {
 	char *id;
+	char asgn;
 	do {
 		if (expect(T_IDEN, 1))
 			return 1;
@@ -285,6 +286,8 @@ char expect_decl(char multiple, enum token_type type) {
 		if (!expect(S_ASGN, 0)) {
 			if (expect_operation())
 				return 1;
+			else
+				asgn = 1;
 
 			struct stack_item *item = pop(lex_state.stack);
 			if (item->type > type - 40) {
@@ -299,7 +302,8 @@ char expect_decl(char multiple, enum token_type type) {
 		struct ht_item *var = new_ht_item(id, 0, type - 40);
 		hash_item(lex_state.variables, var);
 
-		fprintf(lex_state.output, "POP%.1s %s\n", &d_types_code[type - 40], id);
+		if (asgn)
+			fprintf(lex_state.output, "POP%.1s %s\n", &d_types_code[type - 40], id);
 
 		if (!multiple)
 			break;
@@ -330,7 +334,7 @@ char expect_asgn(struct ht_item *item) {
 			warning_m(m, lex_state.current->line, lex_state.current->column);
 		}
 
-		fprintf(lex_state.output, "POP%.1s %s", &d_types_code[s_item->type], id);
+		fprintf(lex_state.output, "POP%.1s %s\n", &d_types_code[s_item->type], id);
 		printf("Successfully parsed ASSIGN\n");
 		return 0;
 	}
@@ -348,6 +352,7 @@ char expect_while() {
 
 char expect_for() {
 	if (!expect(S_LPAR, 1)) {
+		// fprintf(lex_state.output, "\tfor_l%ic%i_1\n", );
 		do {
 			if (!expect_data_type(0)) {
 				if (expect_decl(0, lex_state.current->tok->type - 17))
