@@ -26,9 +26,11 @@ char make_tokens() {
 	append_token(eof_info);
 
 	// debugging
-	struct token_info *pointer = lex_state.list;
-	while (pointer != NULL)
-		pointer = pointer->next;
+	// struct token_info *pointer = lex_state.list;
+	// while (pointer != NULL){ 
+	// 	printf("%.8s %s\n", &token_names[pointer->tok->type * 8], pointer->tok->content);
+	// 	pointer = pointer->next;
+	// }
 
 	fclose(lex_state.input);
 	return error;

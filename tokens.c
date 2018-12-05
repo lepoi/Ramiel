@@ -30,12 +30,12 @@ char *d_types_mnemonic [D_TYPES] = {
 };
 char *operator_code = "ADDSUBMULDIVMODCEQCNECGTCGECLTCLE";
 char *l_operator_code [L_OPERATORS] = {
-	"PUSH %s\nPUSHKI 1\nADD\nPOP%s %s\n",
-	"PUSH %s\nPUSHKI 1\nSUB\nPOP%s %s\n"
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
 };
 char *r_operator_code [R_OPERATORS] = {
-	"PUSH %s\nPUSHKI 1\nADD\nPOP%s %s\n",
-	"PUSH %s\nPUSHKI 1\nSUB\nPOP%s %s\n"
+	"PUSH %s\nPUSHKI 1\nADD\nPOP%c %s\n",
+	"PUSH %s\nPUSHKI 1\nSUB\nPOP%c %s\n"
 };
 char *l_operators_mnemonic [L_OPERATORS] = {
 	"increment", "decrement"
